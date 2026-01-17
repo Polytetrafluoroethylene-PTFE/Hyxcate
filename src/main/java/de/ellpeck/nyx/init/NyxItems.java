@@ -2,7 +2,10 @@ package de.ellpeck.nyx.init;
 
 import de.ellpeck.nyx.Nyx;
 import de.ellpeck.nyx.item.*;
-import de.ellpeck.nyx.item.tool.*;
+import de.ellpeck.nyx.item.tool.NyxToolBeamSword;
+import de.ellpeck.nyx.item.tool.NyxToolCelestialWarhammer;
+import de.ellpeck.nyx.item.tool.NyxToolMeteorDetector;
+import de.ellpeck.nyx.item.tool.NyxToolTektiteGreatsword;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
@@ -171,20 +174,38 @@ public class NyxItems {
     }
 
     public static void initMaterials() {
-        meteoriteToolMaterial = EnumHelper.addToolMaterial("meteorite", 4, 2500, 9.0F, 4.0F, 18).setRepairItem(new ItemStack(NyxItems.meteoriteIngot));
-        meteoriteArmorMaterial = EnumHelper.addArmorMaterial("meteorite", Nyx.ID + ":meteorite", 42, new int[]{4, 7, 9, 4}, 18, NyxSoundEvents.EQUIP_METALLIC.getSoundEvent(), 3.0F).setRepairItem(new ItemStack(NyxItems.meteoriteIngot));
+        meteoriteToolMaterial = EnumHelper.addToolMaterial("meteorite", 4, 2500, 9.0F, 4.0F, 18);
+        meteoriteArmorMaterial = EnumHelper.addArmorMaterial("meteorite", Nyx.ID + ":meteorite", 42, new int[]{4, 7, 9, 4}, 18, NyxSoundEvents.EQUIP_METALLIC.getSoundEvent(), 3.0F);
 
-        frezariteToolMaterial = EnumHelper.addToolMaterial("frezarite", 5, 3000, 10.0F, 5.0F, 20).setRepairItem(new ItemStack(NyxItems.frezariteIngot));
-        frezariteArmorMaterial = EnumHelper.addArmorMaterial("frezarite", Nyx.ID + ":frezarite", 48, new int[]{5, 8, 10, 5}, 20, NyxSoundEvents.EQUIP_CRYSTALLINE.getSoundEvent(), 4.0F).setRepairItem(new ItemStack(NyxItems.frezariteIngot));
+        frezariteToolMaterial = EnumHelper.addToolMaterial("frezarite", 5, 3000, 10.0F, 5.0F, 20);
+        frezariteArmorMaterial = EnumHelper.addArmorMaterial("frezarite", Nyx.ID + ":frezarite", 48, new int[]{5, 8, 10, 5}, 20, NyxSoundEvents.EQUIP_CRYSTALLINE.getSoundEvent(), 4.0F);
 
-        kreknoriteToolMaterial = EnumHelper.addToolMaterial("kreknorite", 5, 3000, 10.0F, 5.0F, 20).setRepairItem(new ItemStack(NyxItems.kreknoriteIngot));
-        kreknoriteArmorMaterial = EnumHelper.addArmorMaterial("kreknorite", Nyx.ID + ":kreknorite", 48, new int[]{5, 8, 10, 5}, 20, NyxSoundEvents.EQUIP_METALLIC.getSoundEvent(), 4.0F).setRepairItem(new ItemStack(NyxItems.kreknoriteIngot));
+        kreknoriteToolMaterial = EnumHelper.addToolMaterial("kreknorite", 5, 3000, 10.0F, 5.0F, 20);
+        kreknoriteArmorMaterial = EnumHelper.addArmorMaterial("kreknorite", Nyx.ID + ":kreknorite", 48, new int[]{5, 8, 10, 5}, 20, NyxSoundEvents.EQUIP_METALLIC.getSoundEvent(), 4.0F);
 
-        tektiteToolMaterial = EnumHelper.addToolMaterial("tektite", 5, 3500, 12.0F, 6.0F, 22).setRepairItem(new ItemStack(NyxItems.tektiteGemCluster));
-        tektiteArmorMaterial = EnumHelper.addArmorMaterial("tektite", Nyx.ID + ":tektite", 54, new int[]{6, 9, 11, 6}, 22, NyxSoundEvents.EQUIP_CRYSTALLINE.getSoundEvent(), 4.0F).setRepairItem(new ItemStack(NyxItems.tektiteGemCluster));
+        tektiteToolMaterial = EnumHelper.addToolMaterial("tektite", 5, 3500, 12.0F, 6.0F, 22);
+        tektiteArmorMaterial = EnumHelper.addArmorMaterial("tektite", Nyx.ID + ":tektite", 54, new int[]{6, 9, 11, 6}, 22, NyxSoundEvents.EQUIP_CRYSTALLINE.getSoundEvent(), 4.0F);
 
-        tektiteGreatswordToolMaterial = EnumHelper.addToolMaterial("tektite_greatsword", 5, 3500, 15.0F, 8.0F, 22).setRepairItem(new ItemStack(NyxItems.tektiteGemCluster));
-        celestialWarhammerToolMaterial = EnumHelper.addToolMaterial("celestial_warhammer", 5, 5500, 15.0F, 12.0F, 30).setRepairItem(new ItemStack(NyxItems.fallenStar));
-        beamSwordToolMaterial = EnumHelper.addToolMaterial("beam_sword", 5, 3500, 15.0F, 8.0F, 30).setRepairItem(new ItemStack(NyxBlocks.cyberCrystal));
+        tektiteGreatswordToolMaterial = EnumHelper.addToolMaterial("tektite_greatsword", 5, 3500, 15.0F, 8.0F, 22);
+        celestialWarhammerToolMaterial = EnumHelper.addToolMaterial("celestial_warhammer", 5, 5500, 15.0F, 12.0F, 30);
+        beamSwordToolMaterial = EnumHelper.addToolMaterial("beam_sword", 5, 3500, 15.0F, 8.0F, 30);
+    }
+
+    public static void setRepairItems() {
+        meteoriteToolMaterial.setRepairItem(new ItemStack(NyxItems.meteoriteIngot));
+        meteoriteArmorMaterial.setRepairItem(new ItemStack(NyxItems.meteoriteIngot));
+
+        frezariteToolMaterial.setRepairItem(new ItemStack(NyxItems.frezariteIngot));
+        frezariteArmorMaterial.setRepairItem(new ItemStack(NyxItems.frezariteIngot));
+
+        kreknoriteToolMaterial.setRepairItem(new ItemStack(NyxItems.kreknoriteIngot));
+        kreknoriteArmorMaterial.setRepairItem(new ItemStack(NyxItems.kreknoriteIngot));
+
+        tektiteToolMaterial.setRepairItem(new ItemStack(NyxItems.tektiteGemCluster));
+        tektiteArmorMaterial.setRepairItem(new ItemStack(NyxItems.tektiteGemCluster));
+
+        tektiteGreatswordToolMaterial.setRepairItem(new ItemStack(NyxItems.tektiteGemCluster));
+        celestialWarhammerToolMaterial.setRepairItem(new ItemStack(NyxItems.fallenStar));
+        beamSwordToolMaterial.setRepairItem(new ItemStack(NyxBlocks.cyberCrystal));
     }
 }
