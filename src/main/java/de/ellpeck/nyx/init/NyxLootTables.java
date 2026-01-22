@@ -8,6 +8,7 @@ public class NyxLootTables {
     public static final ResourceLocation ALIEN_CREEPER_FREZARITE = new ResourceLocation(Nyx.ID, "entities/alien_creeper_frezarite");
     public static final ResourceLocation ALIEN_CREEPER_KREKNORITE = new ResourceLocation(Nyx.ID, "entities/alien_creeper_kreknorite");
     public static final ResourceLocation ALIEN_CREEPER_METEORITE = new ResourceLocation(Nyx.ID, "entities/alien_creeper_meteorite");
+    public static final ResourceLocation EYEZOR = new ResourceLocation(Nyx.ID, "entities/eyezor");
     // Passive
     public static final ResourceLocation ALIEN_KITTY_FREZARITE = new ResourceLocation(Nyx.ID, "entities/alien_kitty_frezarite");
     public static final ResourceLocation ALIEN_KITTY_GREEN = new ResourceLocation(Nyx.ID, "entities/alien_kitty_green");

@@ -1,0 +1,43 @@
+package de.ellpeck.nyx.client.renderer;
+
+import de.ellpeck.nyx.Nyx;
+import de.ellpeck.nyx.client.model.NyxModelEyezor;
+import de.ellpeck.nyx.entity.NyxEntityAlienCreeper;
+import de.ellpeck.nyx.entity.NyxEntityEyezor;
+import net.minecraft.client.model.ModelZombie;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.entity.RenderBiped;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.util.ResourceLocation;
+
+public class NyxRendererEyezor extends RenderBiped<NyxEntityEyezor> {
+    private static final ResourceLocation BASIC = new ResourceLocation(Nyx.ID, "textures/entities/eyezor/basic.png");
+
+    public NyxRendererEyezor(RenderManager renderManager) {
+        super(renderManager, new NyxModelEyezor(), 0.5F);
+        LayerBipedArmor layerbipedarmor = new LayerBipedArmor(this)
+        {
+            protected void initArmor()
+            {
+                this.modelLeggings = new ModelZombie(0.5F, true);
+                this.modelArmor = new ModelZombie(1.0F, true);
+            }
+        };
+        this.addLayer(layerbipedarmor);
+    }
+
+    protected void preRenderCallback(NyxEntityEyezor entity, float partialTickTime) {
+        float f = 1.0625F;
+        GlStateManager.scale(f, f, f);
+    }
+
+    @Override
+    protected ResourceLocation getEntityTexture(NyxEntityEyezor  entity) {
+        switch (entity.getDataManager().get(NyxEntityEyezor.TYPE)) {
+            default: // Common
+                return BASIC;
+        }
+    }
+}
