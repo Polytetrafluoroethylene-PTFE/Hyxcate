@@ -143,6 +143,10 @@ public final class NyxEvents {
                 pullItems(player, 6.0D, 0.004F + (0.002F * magnetizationLevel));
             }
         }
+
+        if (NyxWorld.get(player.world).currentLunarEvent instanceof NyxEventBlueMoon) {
+            player.addPotionEffect(new PotionEffect(MobEffects.LUCK, 2, 1, false, false));
+        }
     }
 
     // Magnetization effect
