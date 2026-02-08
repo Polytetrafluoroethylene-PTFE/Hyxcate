@@ -219,3 +219,17 @@ modifier.nyx.stunlock_armor.name=Stunlock
 modifier.nyx.stunlock_armor.desc=§oStay put!§r\nGetting hurt has a chance (5% per armor piece) to paralyze your attacker and make them completely immobile for 8 seconds.
 modifier.nyx.supercharge_armor.name=Supercharge
 modifier.nyx.supercharge_armor.desc=§oSupercharge me!§r\nGetting hurt has a chance (5% per armor piece) to charge you up with Haste III and Speed III for 5 seconds!
+
+# Config Categories
+config.nyx.master_switches=Master Switches
+config.nyx.general=General
+config.nyx.events_lunar=Events: Lunar
+config.nyx.events_solar=Events: Solar
+config.nyx.meteors=Meteors
+config.nyx.falling_stars=Falling Stars
+config.nyx.blood_moon=Blood Moon
+config.nyx.blue_moon=Blue Moon
+config.nyx.full_moon=Full Moon
+config.nyx.star_shower=Star Shower
+config.nyx.grim_eclipse=Grim Eclipse
+config.nyx.red_giant=Red Giant

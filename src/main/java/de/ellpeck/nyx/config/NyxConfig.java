@@ -9,21 +9,27 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Config(modid = Nyx.ID, name = Nyx.NAME)
 public class NyxConfig {
+    @Config.LangKey("config.nyx.master_switches")
     @Config.Comment("Master switches for entire modules")
     public static final MasterSwitches MASTER_SWITCHES = new MasterSwitches();
 
+    @Config.LangKey("config.nyx.general")
     @Config.Comment("Settings for general mechanics")
     public static final General GENERAL = new General();
 
+    @Config.LangKey("config.nyx.events_lunar")
     @Config.Comment("Settings for lunar events")
     public static final EventsLunar EVENTS_LUNAR = new EventsLunar();
 
+    @Config.LangKey("config.nyx.events_solar")
     @Config.Comment("Settings for solar events")
     public static final EventsSolar EVENTS_SOLAR = new EventsSolar();
 
+    @Config.LangKey("config.nyx.meteors")
     @Config.Comment("Settings for meteors")
     public static final Meteors METEORS = new Meteors();
 
+    @Config.LangKey("config.nyx.falling_stars")
     @Config.Comment("Settings for falling stars")
     public static final FallingStars FALLING_STARS = new FallingStars();
 
@@ -103,15 +109,19 @@ public class NyxConfig {
     }
 
     public static class EventsLunar {
+        @Config.LangKey("config.nyx.blood_moon")
         @Config.Comment("Blood Moon settings")
         public final BloodMoon BLOOD_MOON = new BloodMoon();
 
+        @Config.LangKey("config.nyx.blue_moon")
         @Config.Comment("Blue Moon settings")
         public final BlueMoon BLUE_MOON = new BlueMoon();
 
+        @Config.LangKey("config.nyx.full_moon")
         @Config.Comment("Full Moon settings")
         public final FullMoon FULL_MOON = new FullMoon();
 
+        @Config.LangKey("config.nyx.star_shower")
         @Config.Comment("Star Shower settings")
         public final StarShower STAR_SHOWER = new StarShower();
 
@@ -293,9 +303,11 @@ public class NyxConfig {
     }
 
     public static class EventsSolar {
+        @Config.LangKey("config.nyx.grim_eclipse")
         @Config.Comment("Grim Eclipse settings")
         public final GrimEclipse GRIM_ECLIPSE = new GrimEclipse();
 
+        @Config.LangKey("config.nyx.red_giant")
         @Config.Comment("Red Giant settings")
         public final RedGiant RED_GIANT = new RedGiant();
 
