@@ -150,9 +150,17 @@ public class NyxConfig {
             @Config.RangeInt(min = 0)
             public int gracePeriod = 8;
 
+            @Config.Name("Cloud Color")
+            @Config.Comment("The hex code of the Blood Moon's cloud color")
+            public int cloudColor = 0x420d03;
+
             @Config.Name("Lightmap Color")
             @Config.Comment("The hex code of the Blood Moon's lightmap color")
             public int lightmapColor = 0x420d03;
+
+            @Config.Name("Sky Color")
+            @Config.Comment("The hex code of the Blood Moon's sky color")
+            public int skyColor = 0x420d03;
 
             @Config.Name("On Full Moon")
             @Config.Comment("If the Blood Moon should only occur on full moon nights")
@@ -187,10 +195,6 @@ public class NyxConfig {
             @Config.Name("Replacement Spawns")
             @Config.Comment({"The registry names of entities that should replace other entities during the event", "Syntax: originalEntity;replacementEntity"})
             public String[] spawnsReplacement = new String[]{};
-
-            @Config.Name("Sky Color")
-            @Config.Comment("The hex code of the Blood Moon's sky color")
-            public int skyColor = 0x420d03;
         }
 
         public static class BlueMoon {
@@ -214,9 +218,17 @@ public class NyxConfig {
             @Config.RangeInt(min = 0)
             public int gracePeriod = 8;
 
+            @Config.Name("Cloud Color")
+            @Config.Comment("The hex code of the Blue Moon's cloud color")
+            public int cloudColor = 0x3f3fc0;
+
             @Config.Name("Lightmap Color")
             @Config.Comment("The hex code of the Blue Moon's lightmap color")
             public int lightmapColor = 0x3f3fc0;
+
+            @Config.Name("Sky Color")
+            @Config.Comment("The hex code of the Blue Moon's sky color")
+            public int skyColor = 0x3f3fc0;
 
             @Config.Name("On Full Moon")
             @Config.Comment("If the Blue Moon should only occur on full moon nights")
@@ -248,10 +260,6 @@ public class NyxConfig {
             @Config.Name("Replacement Spawns")
             @Config.Comment({"The registry names of entities that should replace other entities during the event", "Syntax: originalEntity;replacementEntity"})
             public String[] spawnsReplacement = new String[]{};
-
-            @Config.Name("Sky Color")
-            @Config.Comment("The hex code of the Blue Moon's sky color")
-            public int skyColor = 0x3f3fc0;
         }
 
         public static class FullMoon {
@@ -303,9 +311,17 @@ public class NyxConfig {
             @Config.RangeInt(min = 0)
             public int gracePeriod = 15;
 
+            @Config.Name("Cloud Color")
+            @Config.Comment("The hex code of the Star Shower's cloud color")
+            public int cloudColor = 0xdec25f;
+
             @Config.Name("Lightmap Color")
             @Config.Comment("The hex code of the Star Shower's lightmap color")
             public int lightmapColor = 0xdec25f;
+
+            @Config.Name("Sky Color")
+            @Config.Comment("The hex code of the Star Shower's sky color")
+            public int skyColor = 0xdec25f;
 
             @Config.Name("On Full Moon")
             @Config.Comment("If the Star Shower should only occur on full moon nights")
@@ -323,10 +339,6 @@ public class NyxConfig {
             @Config.Name("Replacement Spawns")
             @Config.Comment({"The registry names of entities that should replace other entities during the event", "Syntax: originalEntity;replacementEntity"})
             public String[] spawnsReplacement = new String[]{};
-
-            @Config.Name("Sky Color")
-            @Config.Comment("The hex code of the Star Shower's sky color")
-            public int skyColor = 0xdec25f;
         }
     }
 
@@ -373,17 +385,21 @@ public class NyxConfig {
             @Config.RangeInt(min = 0, max = 1000)
             public int spawnsExtraChance = 5;
 
+            @Config.Name("Cloud Color")
+            @Config.Comment("The hex code of the Grim Eclipse's cloud color")
+            public int cloudColor = 0x131311;
+
             @Config.Name("Lightmap Color")
             @Config.Comment("The hex code of the Grim Eclipse's lightmap color")
             public int lightmapColor = 0x131311;
 
-            @Config.Name("Replacement Spawns")
-            @Config.Comment({"The registry names of entities that should replace other entities during the event", "Syntax: originalEntity;replacementEntity"})
-            public String[] spawnsReplacement = new String[]{};
-
             @Config.Name("Sky Color")
             @Config.Comment("The hex code of the Grim Eclipse's sky color")
             public int skyColor = 0x070707;
+
+            @Config.Name("Replacement Spawns")
+            @Config.Comment({"The registry names of entities that should replace other entities during the event", "Syntax: originalEntity;replacementEntity"})
+            public String[] spawnsReplacement = new String[]{};
         }
 
         public static class RedGiant {
@@ -416,9 +432,17 @@ public class NyxConfig {
             @Config.RangeInt(min = 0, max = 1000)
             public int spawnsExtraChance = 5;
 
+            @Config.Name("Cloud Color")
+            @Config.Comment("The hex code of the Red Giant's cloud color")
+            public int cloudColor = 0x420d03;
+
             @Config.Name("Lightmap Color")
             @Config.Comment("The hex code of the Red Giant's lightmap color")
             public int lightmapColor = 0x420d03;
+
+            @Config.Name("Sky Color")
+            @Config.Comment("The hex code of the Red Giant's sky color")
+            public int skyColor = 0x420d03;
 
             @Config.Name("Replacement Spawns")
             @Config.Comment({"The registry names of entities that should replace other entities during the event", "Syntax: originalEntity;replacementEntity"})
@@ -427,10 +451,6 @@ public class NyxConfig {
                     "minecraft:skeleton;minecraft:wither_skeleton",
                     "minecraft:slime;minecraft:magma_cube"
             };
-
-            @Config.Name("Sky Color")
-            @Config.Comment("The hex code of the Red Giant's sky color")
-            public int skyColor = 0x420d03;
         }
     }
 

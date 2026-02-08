@@ -54,6 +54,11 @@ public class NyxEventBlueMoon extends NyxLunarEvent {
     }
 
     @Override
+    public int getCloudColor() {
+        return NyxConfig.EVENTS_LUNAR.BLUE_MOON.cloudColor;
+    }
+
+    @Override
     public int getLightmapColor() {
         return NyxConfig.EVENTS_LUNAR.BLUE_MOON.lightmapColor;
     }

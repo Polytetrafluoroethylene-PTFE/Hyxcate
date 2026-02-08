@@ -47,6 +47,11 @@ public class NyxEventStarShower extends NyxLunarEvent {
     }
 
     @Override
+    public int getCloudColor() {
+        return NyxConfig.EVENTS_LUNAR.STAR_SHOWER.cloudColor;
+    }
+
+    @Override
     public int getLightmapColor() {
         return NyxConfig.EVENTS_LUNAR.STAR_SHOWER.lightmapColor;
     }
