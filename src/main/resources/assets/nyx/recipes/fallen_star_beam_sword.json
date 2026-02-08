@@ -1,4 +1,10 @@
 {
+  "conditions": [
+    {
+      "type": "minecraft:item_exists",
+      "item": "nyx:fallen_star_beam_sword"
+    }
+  ],
   "type": "forge:ore_shaped",
   "pattern": [
     "#",

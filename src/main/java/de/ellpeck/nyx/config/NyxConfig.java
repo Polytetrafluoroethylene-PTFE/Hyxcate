@@ -48,6 +48,14 @@ public class NyxConfig {
         @Config.Name("Enchantments")
         @Config.Comment("If enchantments should be enabled")
         public boolean enchantmentsEnabled = true;
+
+        @Config.Name("Weapons: Beam Swords")
+        @Config.Comment("If beam swords should be enabled")
+        public boolean beamSwordsEnabled = true;
+
+        @Config.Name("Weapons: Celestial Warhammer")
+        @Config.Comment("If the Celestial Warhammer should be enabled")
+        public boolean celestialWarhammerEnabled = true;
     }
 
     public static class General {

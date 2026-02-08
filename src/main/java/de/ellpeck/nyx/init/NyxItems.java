@@ -1,5 +1,6 @@
 package de.ellpeck.nyx.init;
 
+import de.ellpeck.nyx.config.NyxConfig;
 import de.ellpeck.nyx.Nyx;
 import de.ellpeck.nyx.item.*;
 import de.ellpeck.nyx.item.tool.NyxToolBeamSword;
@@ -153,14 +154,19 @@ public class NyxItems {
         tektiteLeggings = initItem(new NyxItemArmor(tektiteArmorMaterial, 2, EntityEquipmentSlot.LEGS, 0, 0.25D, EnumRarity.EPIC), "tektite_leggings");
         tektiteBoots = initItem(new NyxItemArmor(tektiteArmorMaterial, 3, EntityEquipmentSlot.FEET, 0, 0.10D, EnumRarity.EPIC), "tektite_boots");
         tektiteBow = initItem(new NyxItemBow(2500, 1.35F, 1.5F, 0.3F, 0.5F, EnumRarity.EPIC, Ingredient.fromStacks(new ItemStack(tektiteGemCluster))), "tektite_bow");
-        celestialWarhammer = initItem(new NyxToolCelestialWarhammer(celestialWarhammerToolMaterial, 0.8D, 0, 0.0D, EnumRarity.EPIC), "celestial_warhammer");
 
-        fallenStarBeamSword = initItem(new NyxToolBeamSword(beamSwordToolMaterial, 1.4D, 0, 0.0D, EnumRarity.EPIC), "fallen_star_beam_sword");
-        meteoriteBeamSword = initItem(new NyxToolBeamSword(beamSwordToolMaterial, 1.4D, 0, 0.0D, EnumRarity.EPIC), "meteorite_beam_sword");
-        frezariteBeamSword = initItem(new NyxToolBeamSword(beamSwordToolMaterial, 1.4D, 0, 0.0D, EnumRarity.EPIC), "frezarite_beam_sword");
-        kreknoriteBeamSword = initItem(new NyxToolBeamSword(beamSwordToolMaterial, 1.4D, 0, 0.0D, EnumRarity.EPIC), "kreknorite_beam_sword");
-        tektiteBeamSword = initItem(new NyxToolBeamSword(beamSwordToolMaterial, 1.4D, 0, 0.0D, EnumRarity.EPIC), "tektite_beam_sword");
-        cyberCrystalBeamSword = initItem(new NyxToolBeamSword(beamSwordToolMaterial, 1.4D, 0, 0.0D, EnumRarity.EPIC), "cyber_crystal_beam_sword");
+        if (NyxConfig.MASTER_SWITCHES.celestialWarhammerEnabled) {
+            celestialWarhammer = initItem(new NyxToolCelestialWarhammer(celestialWarhammerToolMaterial, 0.8D, 0, 0.0D, EnumRarity.EPIC), "celestial_warhammer");
+        }
+
+        if (NyxConfig.MASTER_SWITCHES.beamSwordsEnabled) {
+            fallenStarBeamSword = initItem(new NyxToolBeamSword(beamSwordToolMaterial, 1.4D, 0, 0.0D, EnumRarity.EPIC), "fallen_star_beam_sword");
+            meteoriteBeamSword = initItem(new NyxToolBeamSword(beamSwordToolMaterial, 1.4D, 0, 0.0D, EnumRarity.EPIC), "meteorite_beam_sword");
+            frezariteBeamSword = initItem(new NyxToolBeamSword(beamSwordToolMaterial, 1.4D, 0, 0.0D, EnumRarity.EPIC), "frezarite_beam_sword");
+            kreknoriteBeamSword = initItem(new NyxToolBeamSword(beamSwordToolMaterial, 1.4D, 0, 0.0D, EnumRarity.EPIC), "kreknorite_beam_sword");
+            tektiteBeamSword = initItem(new NyxToolBeamSword(beamSwordToolMaterial, 1.4D, 0, 0.0D, EnumRarity.EPIC), "tektite_beam_sword");
+            cyberCrystalBeamSword = initItem(new NyxToolBeamSword(beamSwordToolMaterial, 1.4D, 0, 0.0D, EnumRarity.EPIC), "cyber_crystal_beam_sword");
+        }
 
         MOD_ITEMS.forEach(event.getRegistry()::register);
     }

@@ -1,4 +1,10 @@
 {
+  "conditions": [
+    {
+      "type": "minecraft:item_exists",
+      "item": "nyx:celestial_warhammer"
+    }
+  ],
   "type": "forge:ore_shaped",
   "pattern": [
     "CEC",
