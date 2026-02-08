@@ -240,9 +240,9 @@ public class NyxEntityFallingMeteor extends NyxEntityFallingStar {
                             ((EntityPlayerMP) player).connection.sendPacket(new SPacketSoundEffect(sound, SoundCategory.AMBIENT, player.posX, player.posY, player.posZ, volume, pitch));
                         }
                         // send message
-                        if (NyxConfig.meteorMessage && dist > 16 * 16) {
+                        if (NyxConfig.METEORS.message && dist > 16 * 16) {
                             ITextComponent text;
-                            if (NyxConfig.meteorMessageVerbose) {
+                            if (NyxConfig.METEORS.messageVerbose) {
                                 text = new TextComponentTranslation("info." + Nyx.ID + ".meteor_verbose");
                                 text.appendText(" " + this.getPosition().getX() + ", " + this.getPosition().getY() + ", " + this.getPosition().getZ() + "!");
                             } else {

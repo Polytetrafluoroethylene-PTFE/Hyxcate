@@ -18,31 +18,6 @@ public class NyxPotionParalysis extends NyxPotion {
         super(name, isBadEffect, liquidColor);
     }
 
-    @Override
-    public void performEffect(EntityLivingBase entity, int amplifier) {
-        entity.attackEntityFrom(NyxDamageSource.PARALYSIS, 1.0F + (1.0F * amplifier)); // 1.0F = 1 half heart
-
-        // Disables mob ai when paralyzed, players are affected differently
-        if (entity instanceof EntityPlayer) {
-            return;
-        } else if (entity instanceof EntityLiving) {
-            ((EntityLiving) entity).setNoAI(true);
-        } else {
-            entity.updateBlocked = true;
-        }
-    }
-
-    @Override
-    public boolean isReady(int duration, int amplifier) {
-        int i = 25 >> amplifier;
-
-        if (i > 0) {
-            return duration % i == 0;
-        } else {
-            return true;
-        }
-    }
-
     // Prevents breaking blocks for players
     @SubscribeEvent
     public static void onBreakSpeedEvent(PlayerEvent.BreakSpeed event) {
@@ -83,6 +58,30 @@ public class NyxPotionParalysis extends NyxPotion {
             } else {
                 entity.updateBlocked = false;
             }
+        }
+    }
+
+    @Override
+    public void performEffect(EntityLivingBase entity, int amplifier) {
+        entity.attackEntityFrom(NyxDamageSource.PARALYSIS, 1.0F + (1.0F * amplifier)); // 1.0F = 1 half heart
+
+        // Disables mob ai when paralyzed, players are affected differently
+        if (entity instanceof EntityPlayer) {
+        } else if (entity instanceof EntityLiving) {
+            ((EntityLiving) entity).setNoAI(true);
+        } else {
+            entity.updateBlocked = true;
+        }
+    }
+
+    @Override
+    public boolean isReady(int duration, int amplifier) {
+        int i = 25 >> amplifier;
+
+        if (i > 0) {
+            return duration % i == 0;
+        } else {
+            return true;
         }
     }
 }

@@ -20,7 +20,7 @@ import java.util.Iterator;
 
 public class NyxEventBlueMoon extends NyxLunarEvent {
 
-    private final ConfigImpl config = new ConfigImpl(() -> NyxConfig.harvestMoon);
+    private final ConfigImpl config = new ConfigImpl(NyxConfig.EVENTS_LUNAR.BLUE_MOON.chance, NyxConfig.EVENTS_LUNAR.BLUE_MOON.startNight, NyxConfig.EVENTS_LUNAR.BLUE_MOON.gracePeriod, NyxConfig.EVENTS_LUNAR.BLUE_MOON.nightInterval);
 
     public NyxEventBlueMoon(NyxWorld nyxWorld) {
         super("blue_moon", nyxWorld);
@@ -28,8 +28,7 @@ public class NyxEventBlueMoon extends NyxLunarEvent {
 
     @Override
     public ITextComponent getStartMessage() {
-        return new TextComponentTranslation("info." + Nyx.ID + ".blue_moon")
-                .setStyle(new Style().setColor(TextFormatting.BLUE).setItalic(true));
+        return new TextComponentTranslation("info." + Nyx.ID + ".blue_moon").setStyle(new Style().setColor(TextFormatting.BLUE).setItalic(true));
     }
 
     @Override
@@ -39,10 +38,8 @@ public class NyxEventBlueMoon extends NyxLunarEvent {
 
     @Override
     public boolean shouldStart(boolean lastDaytime) {
-        if (NyxConfig.harvestMoonOnFull && this.world.getCurrentMoonPhaseFactor() < 1)
-            return false;
-        if (!lastDaytime || NyxWorld.isDaytime(this.world))
-            return false;
+        if (NyxConfig.EVENTS_LUNAR.BLUE_MOON.onFullMoon && this.world.getCurrentMoonPhaseFactor() < 1) return false;
+        if (!lastDaytime || NyxWorld.isDaytime(this.world)) return false;
         return this.config.canStart(true);
     }
 
@@ -65,14 +62,13 @@ public class NyxEventBlueMoon extends NyxLunarEvent {
     public void update(boolean lastDaytime) {
         this.config.update(lastDaytime);
 
-        if (this.world.isRemote || this.nyxWorld.currentLunarEvent != this || NyxConfig.harvestMoonGrowAmount <= 0)
+        if (this.world.isRemote || this.nyxWorld.currentLunarEvent != this || NyxConfig.EVENTS_LUNAR.BLUE_MOON.growAmount <= 0)
             return;
-        if (this.world.getTotalWorldTime() % NyxConfig.harvestMoonGrowInterval != 0)
-            return;
+        if (this.world.getTotalWorldTime() % NyxConfig.EVENTS_LUNAR.BLUE_MOON.growInterval != 0) return;
         Iterator<Chunk> chunks = this.world.getPersistentChunkIterable(((WorldServer) this.world).getPlayerChunkMap().getChunkIterator());
         while (chunks.hasNext()) {
             Chunk chunk = chunks.next();
-            for (int i = 0; i < NyxConfig.harvestMoonGrowAmount; i++) {
+            for (int i = 0; i < NyxConfig.EVENTS_LUNAR.BLUE_MOON.growAmount; i++) {
                 int x = this.world.rand.nextInt(16);
                 int z = this.world.rand.nextInt(16);
                 int y = chunk.getHeightValue(x, z);

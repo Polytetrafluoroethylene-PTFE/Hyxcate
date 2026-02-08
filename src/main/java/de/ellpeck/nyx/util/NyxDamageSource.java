@@ -1,10 +1,10 @@
 package de.ellpeck.nyx.util;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
+
+import javax.annotation.Nullable;
 
 public class NyxDamageSource extends EntityDamageSource {
     public static final DamageSource CELESTIAL = new DamageSource("nyx_celestial").setDamageBypassesArmor().setDamageIsAbsolute();

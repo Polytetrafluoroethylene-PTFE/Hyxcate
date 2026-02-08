@@ -19,9 +19,9 @@ public abstract class NyxLightmapColorsMixin {
 
     @Inject(method = "getLightmapColors", at = @At("HEAD"), remap = false)
     private void nyxSetLightmapColors(float partialTicks, float sunBrightness, float skyLight, float blockLight, float[] colors, CallbackInfo ci) {
-        if (!NyxConfig.eventTint) return;
+        if (!NyxConfig.GENERAL.eventTint) return;
         NyxWorld nyxWorld = NyxWorld.get(this.world);
-        if (nyxWorld == null || nyxWorld.currentSkyColor == 0 || (!NyxConfig.eventTintUnderground && skyLight == 0))
+        if (nyxWorld == null || nyxWorld.currentSkyColor == 0 || (!NyxConfig.GENERAL.eventTintUnderground && skyLight == 0))
             return;
         if (nyxWorld.currentSolarEvent != null) {
             float[] customLightmapColors = NyxColorUtils.getRgbIntAsFloatArray(NyxColorUtils.adjustBrightness(nyxWorld.currentSolarEvent.getSkyColor(), 2.0F));

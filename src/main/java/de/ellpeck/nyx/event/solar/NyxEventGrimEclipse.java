@@ -12,7 +12,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 
 public class NyxEventGrimEclipse extends NyxSolarEvent {
-    private final ConfigImpl config = new ConfigImpl(() -> NyxConfig.solarEclipse);
+    private final ConfigImpl config = new ConfigImpl(NyxConfig.EVENTS_SOLAR.GRIM_ECLIPSE.chance, NyxConfig.EVENTS_SOLAR.GRIM_ECLIPSE.startDay, NyxConfig.EVENTS_SOLAR.GRIM_ECLIPSE.gracePeriod, NyxConfig.EVENTS_SOLAR.GRIM_ECLIPSE.dayInterval);
 
     public NyxEventGrimEclipse(NyxWorld nyxWorld) {
         super("grim_eclipse", nyxWorld);
@@ -20,8 +20,7 @@ public class NyxEventGrimEclipse extends NyxSolarEvent {
 
     @Override
     public ITextComponent getStartMessage() {
-        return new TextComponentTranslation("info." + Nyx.ID + ".grim_eclipse")
-                .setStyle(new Style().setColor(TextFormatting.DARK_GRAY).setItalic(true));
+        return new TextComponentTranslation("info." + Nyx.ID + ".grim_eclipse").setStyle(new Style().setColor(TextFormatting.DARK_GRAY).setItalic(true));
     }
 
     @Override
@@ -31,8 +30,7 @@ public class NyxEventGrimEclipse extends NyxSolarEvent {
 
     @Override
     public boolean shouldStart(boolean lastNighttime) {
-        if (!lastNighttime || NyxWorld.isNighttime(this.world))
-            return false;
+        if (!lastNighttime || NyxWorld.isNighttime(this.world)) return false;
         return this.config.canStart();
     }
 

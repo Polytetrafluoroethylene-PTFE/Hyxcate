@@ -1,5 +1,6 @@
 package de.ellpeck.nyx.block;
 
+import com.invadermonky.futurefireproof.api.IFireproofBlock;
 import de.ellpeck.nyx.init.NyxBlocks;
 import de.ellpeck.nyx.init.NyxRegistry;
 import net.minecraft.block.Block;
@@ -22,9 +23,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-
-import com.invadermonky.futurefireproof.api.IFireproofBlock;
-
 import java.util.List;
 import java.util.Random;
 

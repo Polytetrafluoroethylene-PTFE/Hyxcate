@@ -12,9 +12,8 @@ import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import java.util.UUID;
-
 import javax.annotation.Nonnull;
+import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = Nyx.ID)
 public class NyxAttributes {

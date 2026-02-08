@@ -1,8 +1,8 @@
 package de.ellpeck.nyx.item.tool;
 
 import de.ellpeck.nyx.init.NyxPotions;
-import de.ellpeck.nyx.item.NyxItemSword;
 import de.ellpeck.nyx.init.NyxSoundEvents;
+import de.ellpeck.nyx.item.NyxItemSword;
 import de.ellpeck.nyx.util.NyxUtils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;

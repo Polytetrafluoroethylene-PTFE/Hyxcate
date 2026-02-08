@@ -57,7 +57,6 @@ import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.event.world.ChunkEvent;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -90,7 +89,7 @@ public final class NyxEvents {
                     int radius = 6;
                     AxisAlignedBB area = new AxisAlignedBB(player.posX - radius, player.posY - radius, player.posZ - radius, player.posX + radius, player.posY + radius, player.posZ + radius);
                     DamageSource source = DamageSource.causePlayerDamage(player);
-                    float damage = NyxConfig.celestialWarhammerAbilityDamage * Math.min((leapTime - 5) / 35F, 1);
+                    float damage = NyxConfig.GENERAL.celestialWarhammerAbilityDamage * Math.min((leapTime - 5) / 35F, 1);
 
                     for (EntityLivingBase entity : player.world.getEntitiesWithinAABB(EntityLivingBase.class, area, EntitySelectors.IS_ALIVE)) {
                         if (!entity.isOnSameTeam(player)) {
@@ -221,11 +220,11 @@ public final class NyxEvents {
         data.update();
 
         // Falling Stars
-        if (!event.world.isRemote && NyxConfig.fallingStars && !NyxWorld.isDaytime(event.world) && event.world.getTotalWorldTime() % 20 == 0) {
+        if (!event.world.isRemote && NyxConfig.MASTER_SWITCHES.fallingStarsEnabled && !NyxWorld.isDaytime(event.world) && event.world.getTotalWorldTime() % 20 == 0) {
             String dimension = event.world.provider.getDimensionType().getName();
-            if (NyxConfig.allowedDimensions.contains(dimension)) {
+            if (NyxUtils.ALLOWED_DIMENSIONS_LUNAR.contains(dimension)) {
                 for (EntityPlayer player : event.world.playerEntities) {
-                    if (event.world.rand.nextFloat() > (data.currentLunarEvent instanceof NyxEventStarShower ? NyxConfig.fallingStarRarityShower : NyxConfig.fallingStarRarity))
+                    if (event.world.rand.nextFloat() > (data.currentLunarEvent instanceof NyxEventStarShower ? NyxConfig.FALLING_STARS.chanceShower : NyxConfig.FALLING_STARS.chance))
                         continue;
                     BlockPos startPos = player.getPosition().add(event.world.rand.nextGaussian() * 20, 0, event.world.rand.nextGaussian() * 20);
                     startPos = event.world.getPrecipitationHeight(startPos).up(MathHelper.getInt(event.world.rand, 32, 64));
@@ -239,17 +238,17 @@ public final class NyxEvents {
 
         // Meteors
         meteors:
-        if (!event.world.isRemote && NyxConfig.meteors && event.world.getTotalWorldTime() % 20 == 0) {
+        if (!event.world.isRemote && NyxConfig.MASTER_SWITCHES.meteorsEnabled && event.world.getTotalWorldTime() % 20 == 0) {
             if (event.world.playerEntities.isEmpty()) break meteors;
             EntityPlayer selectedPlayer = event.world.playerEntities.get(event.world.rand.nextInt(event.world.playerEntities.size()));
             if (selectedPlayer == null) break meteors;
-            double spawnX = selectedPlayer.posX + MathHelper.nextDouble(event.world.rand, -NyxConfig.meteorSpawnRadius, NyxConfig.meteorSpawnRadius);
-            double spawnZ = selectedPlayer.posZ + MathHelper.nextDouble(event.world.rand, -NyxConfig.meteorSpawnRadius, NyxConfig.meteorSpawnRadius);
+            double spawnX = selectedPlayer.posX + MathHelper.nextDouble(event.world.rand, -NyxConfig.METEORS.spawnRadius, NyxConfig.METEORS.spawnRadius);
+            double spawnZ = selectedPlayer.posZ + MathHelper.nextDouble(event.world.rand, -NyxConfig.METEORS.spawnRadius, NyxConfig.METEORS.spawnRadius);
             BlockPos spawnPos = new BlockPos(spawnX, 0, spawnZ);
-            double chance = NyxConfig.getMeteorChance(event.world, data);
+            double chance = NyxUtils.getMeteorChance(event.world, data);
             MutableInt ticksInArea = data.playersPresentTicks.get(new ChunkPos(spawnPos));
-            if (ticksInArea != null && ticksInArea.intValue() >= NyxConfig.meteorDisallowTime)
-                chance /= Math.pow(2, ticksInArea.intValue() / (double) NyxConfig.meteorDisallowTime);
+            if (ticksInArea != null && ticksInArea.intValue() >= NyxConfig.METEORS.disallowTime)
+                chance /= Math.pow(2, ticksInArea.intValue() / (double) NyxConfig.METEORS.disallowTime);
             if (chance <= 0 || event.world.rand.nextFloat() > chance) break meteors;
             if (!event.world.isBlockLoaded(spawnPos, false)) {
                 // add meteor information to cache
@@ -283,7 +282,7 @@ public final class NyxEvents {
     public static void onLivingTick(LivingEvent.LivingUpdateEvent event) {
         EntityLivingBase entity = event.getEntityLiving();
         // Delete monsters spawned by blood moon
-        if (NyxConfig.bloodMoonVanish && !entity.world.isRemote && NyxWorld.isDaytime(entity.world) && entity.getEntityData().getBoolean(Nyx.ID + ":blood_moon_spawn")) {
+        if (NyxConfig.EVENTS_LUNAR.BLOOD_MOON.mobsVanish && !entity.world.isRemote && NyxWorld.isDaytime(entity.world) && entity.getEntityData().getBoolean(Nyx.ID + ":blood_moon_spawn")) {
             ((WorldServer) entity.world).spawnParticle(EnumParticleTypes.SMOKE_LARGE, entity.posX, entity.posY, entity.posZ, 10, 0.5, 1, 0.5, 0);
             entity.setDead();
         }
@@ -308,7 +307,7 @@ public final class NyxEvents {
 
     @SubscribeEvent
     public static void onExpDrop(LivingExperienceDropEvent event) {
-        if (NyxConfig.enchantments && NyxConfig.maxLunarEdgeXpMult > 0) {
+        if (NyxConfig.MASTER_SWITCHES.enchantmentsEnabled && NyxConfig.GENERAL.lunarEdgeMaxXPMultiplier > 0) {
             EntityPlayer player = event.getAttackingPlayer();
             if (player == null) return;
             ItemStack held = player.getHeldItemMainhand();
@@ -316,7 +315,7 @@ public final class NyxEvents {
             if (level <= 0) return;
             float exp = event.getDroppedExperience();
             float mod = level / (float) NyxEnchantments.lunarEdge.getMaxLevel();
-            mod *= (float) NyxConfig.maxLunarEdgeXpMult;
+            mod *= (float) NyxConfig.GENERAL.lunarEdgeMaxXPMultiplier;
             event.setDroppedExperience((int) (exp + MathHelper.floor(exp * mod)));
         }
     }
@@ -342,7 +341,7 @@ public final class NyxEvents {
 
         if (nyx.currentLunarEvent instanceof NyxEventFullMoon) {
             // Set random effect
-            if (NyxConfig.addPotionEffects && !(entity instanceof EntityCreeper)) {
+            if (NyxConfig.EVENTS_LUNAR.FULL_MOON.addPotionEffects && !(entity instanceof EntityCreeper)) {
                 Potion effect = null;
                 int i = entity.world.rand.nextInt(20);
 
@@ -360,7 +359,7 @@ public final class NyxEvents {
             }
 
             // Spawn a second one
-            if (NyxConfig.additionalMobsChance > 0 && entity.world.rand.nextInt(NyxConfig.additionalMobsChance) == 0)
+            if (NyxConfig.EVENTS_LUNAR.FULL_MOON.additionalMobsChance > 0 && entity.world.rand.nextInt(NyxConfig.EVENTS_LUNAR.FULL_MOON.additionalMobsChance) == 0)
                 NyxUtils.doExtraSpawn(entity, "full_moon_spawn");
         }
 
@@ -395,11 +394,6 @@ public final class NyxEvents {
     }
 
     @SubscribeEvent
-    public static void onConfigChange(ConfigChangedEvent.OnConfigChangedEvent event) {
-        if (Nyx.ID.equals(event.getModID())) NyxConfig.load();
-    }
-
-    @SubscribeEvent
     public static void onInteract(PlayerInteractEvent.RightClickBlock event) {
         EntityPlayer player = event.getEntityPlayer();
         World world = event.getWorld();
@@ -408,7 +402,7 @@ public final class NyxEvents {
         Block block = state.getBlock();
         NyxWorld nyx = NyxWorld.get(world);
 
-        if (nyx != null && nyx.currentLunarEvent instanceof NyxEventBloodMoon && !NyxConfig.bloodMoonSleeping && block instanceof BlockBed)
+        if (nyx != null && nyx.currentLunarEvent instanceof NyxEventBloodMoon && !NyxConfig.EVENTS_LUNAR.BLOOD_MOON.sleeping && block instanceof BlockBed)
             player.sendStatusMessage(new TextComponentTranslation("info." + Nyx.ID + ".blood_moon_sleeping"), true);
     }
 
@@ -422,7 +416,7 @@ public final class NyxEvents {
         EntityPlayer player = event.getEntityPlayer();
         NyxWorld nyx = NyxWorld.get(player.world);
         if (nyx != null) {
-            if (nyx.currentLunarEvent instanceof NyxEventBloodMoon && !NyxConfig.bloodMoonSleeping) {
+            if (nyx.currentLunarEvent instanceof NyxEventBloodMoon && !NyxConfig.EVENTS_LUNAR.BLOOD_MOON.sleeping) {
                 event.setResult(EntityPlayer.SleepResult.OTHER_PROBLEM);
             } else if (nyx.currentSolarEvent instanceof NyxEventGrimEclipse) {
                 event.setResult(EntityPlayer.SleepResult.NOT_POSSIBLE_NOW); // TODO: Make conditional?

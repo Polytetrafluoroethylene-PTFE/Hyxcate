@@ -7,8 +7,8 @@ import de.ellpeck.nyx.config.NyxConfig;
 import de.ellpeck.nyx.entity.*;
 import de.ellpeck.nyx.init.NyxItems;
 import de.ellpeck.nyx.init.NyxPotions;
-import de.ellpeck.nyx.item.NyxItemBow;
 import de.ellpeck.nyx.init.NyxSoundEvents;
+import de.ellpeck.nyx.item.NyxItemBow;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -92,7 +92,7 @@ public final class NyxClientEvents {
 
     @SubscribeEvent
     public static void onFogRender(EntityViewRenderEvent.FogColors event) {
-        if (!NyxConfig.eventTint) return;
+        if (!NyxConfig.GENERAL.eventTint) return;
         NyxWorld world = NyxWorld.get(Minecraft.getMinecraft().world);
         if (world == null || world.currentSkyColor == 0) return;
         event.setRed(lerp(event.getRed(), (world.currentSkyColor >> 16 & 255) / 255F, world.eventSkyModifier));

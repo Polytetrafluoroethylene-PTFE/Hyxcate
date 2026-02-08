@@ -1,5 +1,7 @@
 package de.ellpeck.nyx.item;
 
+import com.google.common.collect.Multimap;
+import com.invadermonky.futurefireproof.api.IFireproofItem;
 import de.ellpeck.nyx.init.NyxAttributes;
 import de.ellpeck.nyx.init.NyxEnchantments;
 import de.ellpeck.nyx.init.NyxItems;
@@ -23,19 +25,15 @@ import net.minecraftforge.common.IRarity;
 import net.minecraftforge.fml.common.Optional;
 
 import javax.annotation.Nullable;
-
-import com.google.common.collect.Multimap;
-import com.invadermonky.futurefireproof.api.IFireproofItem;
-
 import java.util.List;
 
 // If Future Fireproof is installed, make it fireproof like Netherite!
 @Optional.Interface(modid = "futurefireproof", iface = "com.invadermonky.futurefireproof.api.IFireproofItem", striprefs = true)
 public class NyxItemAxe extends ItemAxe implements INyxTool, IFireproofItem {
-    public AttributeModifier magnetizationAmount;
     private final AttributeModifier paralysisChance;
     private final EnumRarity rarity;
     private final ToolMaterial material;
+    public AttributeModifier magnetizationAmount;
 
     public NyxItemAxe(ToolMaterial material, float damage, float speed, int magnetizationAmount, double paralysisChance, EnumRarity rarity) {
         super(material, damage - 1.0F, speed - 4.0F);

@@ -9,6 +9,7 @@ import de.ellpeck.nyx.config.NyxConfig;
 import de.ellpeck.nyx.init.NyxRegistry;
 import de.ellpeck.nyx.network.NyxPacketHandler;
 import de.ellpeck.nyx.proxy.NyxCommonProxy;
+import de.ellpeck.nyx.util.NyxUtils;
 import mod.emt.nyx.Tags;
 import net.minecraft.util.datafix.FixTypes;
 import net.minecraftforge.common.util.ModFixs;
@@ -22,9 +23,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
-import java.io.File;
-
-@Mod(modid = Nyx.ID, name = Nyx.NAME, version = Nyx.VERSION, guiFactory = "de.ellpeck.nyx.util.NyxGuiFactory", dependencies = "after:tconstruct;after:conarm")
+@Mod(modid = Nyx.ID, name = Nyx.NAME, version = Nyx.VERSION, dependencies = "after:tconstruct;after:conarm")
 public class Nyx {
 
     public static final String ID = Tags.MOD_ID;
@@ -42,7 +41,6 @@ public class Nyx {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        NyxConfig.init(new File(event.getModConfigurationDirectory(), NAME + ".cfg"));
         NyxRegistry.preInit();
         NyxPacketHandler.init();
         NyxCompatHandler.preInit();
@@ -60,12 +58,13 @@ public class Nyx {
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
+        NyxUtils.initConfigLists();
         NyxCompatHandler.postInit();
     }
 
     @EventHandler
     public void serverStarting(FMLServerStartingEvent event) {
         event.registerServerCommand(new NyxCommandForce());
-        if (NyxConfig.meteors) event.registerServerCommand(new NyxCommandMeteor());
+        if (NyxConfig.MASTER_SWITCHES.meteorsEnabled) event.registerServerCommand(new NyxCommandMeteor());
     }
 }

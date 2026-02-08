@@ -5,6 +5,7 @@ import de.ellpeck.nyx.Nyx;
 import de.ellpeck.nyx.capability.NyxWorld;
 import de.ellpeck.nyx.config.NyxConfig;
 import de.ellpeck.nyx.init.NyxSoundEvents;
+import de.ellpeck.nyx.util.NyxUtils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,7 +33,7 @@ public class NyxEventBloodMoon extends NyxLunarEvent {
     private static final int MOB_COUNT_DIV = (int) Math.pow(17.0D, 2.0D);
     private final Set<ChunkPos> eligibleChunksForSpawning = Sets.newHashSet();
 
-    private final ConfigImpl config = new ConfigImpl(() -> NyxConfig.bloodMoon);
+    private final ConfigImpl config = new ConfigImpl(NyxConfig.EVENTS_LUNAR.BLOOD_MOON.chance, NyxConfig.EVENTS_LUNAR.BLOOD_MOON.startNight, NyxConfig.EVENTS_LUNAR.BLOOD_MOON.gracePeriod, NyxConfig.EVENTS_LUNAR.BLOOD_MOON.nightInterval);
 
     public NyxEventBloodMoon(NyxWorld nyxWorld) {
         super("blood_moon", nyxWorld);
@@ -49,8 +50,7 @@ public class NyxEventBloodMoon extends NyxLunarEvent {
 
     @Override
     public ITextComponent getStartMessage() {
-        return new TextComponentTranslation("info." + Nyx.ID + ".blood_moon")
-                .setStyle(new Style().setColor(TextFormatting.DARK_RED).setItalic(true));
+        return new TextComponentTranslation("info." + Nyx.ID + ".blood_moon").setStyle(new Style().setColor(TextFormatting.DARK_RED).setItalic(true));
     }
 
     @Override
@@ -60,10 +60,8 @@ public class NyxEventBloodMoon extends NyxLunarEvent {
 
     @Override
     public boolean shouldStart(boolean lastDaytime) {
-        if (NyxConfig.bloodMoonOnFull && this.world.getCurrentMoonPhaseFactor() < 1)
-            return false;
-        if (!lastDaytime || NyxWorld.isDaytime(this.world))
-            return false;
+        if (NyxConfig.EVENTS_LUNAR.BLOOD_MOON.onFullMoon && this.world.getCurrentMoonPhaseFactor() < 1) return false;
+        if (!lastDaytime || NyxWorld.isDaytime(this.world)) return false;
         return this.config.canStart(true);
     }
 
@@ -86,7 +84,7 @@ public class NyxEventBloodMoon extends NyxLunarEvent {
     public void update(boolean lastDaytime) {
         this.config.update(lastDaytime);
 
-        if (this.nyxWorld.currentLunarEvent == this && !this.world.isRemote && NyxConfig.bloodMoonSpawnMultiplier > 1) {
+        if (this.nyxWorld.currentLunarEvent == this && !this.world.isRemote && NyxConfig.EVENTS_LUNAR.BLOOD_MOON.spawnMultiplier > 1) {
             WorldServer world = (WorldServer) this.world;
             this.findChunksForSpawning(world, true, false, world.getTotalWorldTime() % 400L == 0L);
         }
@@ -145,7 +143,7 @@ public class NyxEventBloodMoon extends NyxLunarEvent {
                 if ((!enumcreaturetype.getPeacefulCreature() || spawnPeacefulMobs) && (enumcreaturetype.getPeacefulCreature() || spawnHostileMobs) && (!enumcreaturetype.getAnimal() || spawnOnSetTickRate)) {
                     int k4 = worldServerIn.countEntities(enumcreaturetype, true);
                     // edit: increase spawn cap
-                    int l4 = enumcreaturetype.getMaxNumberOfCreature() * NyxConfig.bloodMoonSpawnMultiplier * i / MOB_COUNT_DIV;
+                    int l4 = enumcreaturetype.getMaxNumberOfCreature() * NyxConfig.EVENTS_LUNAR.BLOOD_MOON.spawnMultiplier * i / MOB_COUNT_DIV;
 
                     if (k4 <= l4) {
                         java.util.ArrayList<ChunkPos> shuffled = com.google.common.collect.Lists.newArrayList(this.eligibleChunksForSpawning);
@@ -180,7 +178,7 @@ public class NyxEventBloodMoon extends NyxLunarEvent {
                                         float f1 = (float) j3 + 0.5F;
 
                                         // edit: use config value for distance
-                                        if (!worldServerIn.isAnyPlayerWithinRangeAt(f, i3, f1, NyxConfig.bloodMoonSpawnRadius) && blockpos1.distanceSq(f, i3, f1) >= 576.0D) {
+                                        if (!worldServerIn.isAnyPlayerWithinRangeAt(f, i3, f1, NyxConfig.EVENTS_LUNAR.BLOOD_MOON.spawnRadius) && blockpos1.distanceSq(f, i3, f1) >= 576.0D) {
                                             if (entry == null) {
                                                 entry = worldServerIn.getSpawnListEntryForTypeAt(enumcreaturetype, mutable);
 
@@ -201,7 +199,7 @@ public class NyxEventBloodMoon extends NyxLunarEvent {
 
                                                 // edit: only spawn allowed mobs
                                                 ResourceLocation name = EntityList.getKey(entityliving);
-                                                if (name == null || NyxConfig.isMobDuplicationWhitelist != NyxConfig.mobDuplicationBlacklist.contains(name.toString())) {
+                                                if (name == null || NyxConfig.EVENTS_LUNAR.isMobDuplicationWhitelist != NyxUtils.MOB_DUPLICATION_LIST.contains(name.toString())) {
                                                     // it looks like setting entry to null here selects a new random entity to spawn
                                                     entry = null;
                                                     continue;

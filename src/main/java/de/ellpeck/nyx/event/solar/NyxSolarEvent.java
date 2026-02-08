@@ -1,14 +1,11 @@
 package de.ellpeck.nyx.event.solar;
 
 import de.ellpeck.nyx.capability.NyxWorld;
-import de.ellpeck.nyx.config.NyxConfig;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.INBTSerializable;
-
-import java.util.function.Supplier;
 
 public abstract class NyxSolarEvent implements INBTSerializable<NBTTagCompound> {
 
@@ -59,13 +56,20 @@ public abstract class NyxSolarEvent implements INBTSerializable<NBTTagCompound> 
 
     public class ConfigImpl implements INBTSerializable<NBTTagCompound> {
 
-        public final Supplier<NyxConfig.SolarEventConfig> config;
         public int daysSinceLast;
         public int startDays;
         public int graceDays;
 
-        public ConfigImpl(Supplier<NyxConfig.SolarEventConfig> config) {
-            this.config = config;
+        public double chance;
+        public int startDay;
+        public int gracePeriod;
+        public int dayInterval;
+
+        public ConfigImpl(double chance, int startDay, int gracePeriod, int dayInterval) {
+            this.chance = chance;
+            this.startDay = startDay;
+            this.gracePeriod = gracePeriod;
+            this.dayInterval = dayInterval;
         }
 
         public void update(boolean lastNighttime) {
@@ -76,19 +80,19 @@ public abstract class NyxSolarEvent implements INBTSerializable<NBTTagCompound> 
 
             if (!lastNighttime && NyxWorld.isNighttime(NyxSolarEvent.this.world)) {
                 this.daysSinceLast++;
-                if (this.startDays < this.config.get().startDay) this.startDays++;
-                if (this.graceDays < this.config.get().graceDays) this.graceDays++;
+                if (this.startDays < this.startDay) this.startDays++;
+                if (this.graceDays < this.gracePeriod) this.graceDays++;
             }
         }
 
         public boolean canStart() {
             if (NyxSolarEvent.this.nyxWorld.forcedSolarEvent == NyxSolarEvent.this) return true;
-            if (this.startDays < this.config.get().startDay) return false;
-            if (this.graceDays < this.config.get().graceDays) return false;
-            if (this.config.get().dayInterval > 0) {
-                return this.daysSinceLast >= this.config.get().dayInterval;
+            if (this.startDays < this.startDay) return false;
+            if (this.graceDays < this.gracePeriod) return false;
+            if (this.dayInterval > 0) {
+                return this.daysSinceLast >= this.dayInterval;
             } else {
-                return NyxSolarEvent.this.world.rand.nextDouble() <= this.config.get().chance;
+                return NyxSolarEvent.this.world.rand.nextDouble() <= this.chance;
             }
         }
 

@@ -1,5 +1,6 @@
 package de.ellpeck.nyx.block;
 
+import com.invadermonky.futurefireproof.api.IFireproofBlock;
 import de.ellpeck.nyx.init.NyxBlocks;
 import de.ellpeck.nyx.item.NyxItemSlab;
 import net.minecraft.block.Block;
@@ -19,10 +20,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.fml.common.Optional;
-
 import org.apache.commons.lang3.mutable.MutableObject;
-
-import com.invadermonky.futurefireproof.api.IFireproofBlock;
 
 import java.util.Random;
 import java.util.function.Supplier;

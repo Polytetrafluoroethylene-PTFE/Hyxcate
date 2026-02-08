@@ -1,5 +1,6 @@
 package de.ellpeck.nyx.item;
 
+import com.invadermonky.futurefireproof.api.IFireproofItem;
 import de.ellpeck.nyx.init.NyxItems;
 import de.ellpeck.nyx.init.NyxSoundEvents;
 import net.minecraft.client.resources.I18n;
@@ -26,9 +27,6 @@ import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fml.common.Optional;
 
 import javax.annotation.Nullable;
-
-import com.invadermonky.futurefireproof.api.IFireproofItem;
-
 import java.util.List;
 
 // If Future Fireproof is installed, make it fireproof like Netherite!

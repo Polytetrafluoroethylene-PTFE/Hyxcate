@@ -1,8 +1,8 @@
 package de.ellpeck.nyx.client.model.layer;
 
 import de.ellpeck.nyx.Nyx;
-import de.ellpeck.nyx.entity.NyxEntityAlienCreeper;
 import de.ellpeck.nyx.client.renderer.NyxRendererAlienCreeper;
+import de.ellpeck.nyx.entity.NyxEntityAlienCreeper;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;

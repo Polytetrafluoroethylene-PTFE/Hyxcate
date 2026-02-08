@@ -1,5 +1,7 @@
 package de.ellpeck.nyx.item;
 
+import com.google.common.collect.Multimap;
+import com.invadermonky.futurefireproof.api.IFireproofItem;
 import de.ellpeck.nyx.init.NyxAttributes;
 import de.ellpeck.nyx.init.NyxEnchantments;
 import de.ellpeck.nyx.init.NyxItems;
@@ -24,10 +26,6 @@ import net.minecraftforge.common.IRarity;
 import net.minecraftforge.fml.common.Optional;
 
 import javax.annotation.Nullable;
-
-import com.google.common.collect.Multimap;
-import com.invadermonky.futurefireproof.api.IFireproofItem;
-
 import java.util.List;
 
 // If Future Fireproof is installed, make it fireproof like Netherite!

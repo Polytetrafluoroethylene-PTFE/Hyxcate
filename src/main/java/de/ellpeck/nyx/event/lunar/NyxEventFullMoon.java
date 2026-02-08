@@ -17,8 +17,7 @@ public class NyxEventFullMoon extends NyxLunarEvent {
 
     @Override
     public ITextComponent getStartMessage() {
-        return new TextComponentTranslation("info." + Nyx.ID + ".full_moon")
-                .setStyle(new Style().setColor(TextFormatting.GRAY).setItalic(true));
+        return new TextComponentTranslation("info." + Nyx.ID + ".full_moon").setStyle(new Style().setColor(TextFormatting.GRAY).setItalic(true));
     }
 
     @Override
@@ -28,10 +27,8 @@ public class NyxEventFullMoon extends NyxLunarEvent {
 
     @Override
     public boolean shouldStart(boolean lastDaytime) {
-        if (!NyxConfig.fullMoon)
-            return false;
-        if (!lastDaytime || NyxWorld.isDaytime(this.world))
-            return false;
+        if (!NyxConfig.EVENTS_LUNAR.FULL_MOON.actAsEvent) return false;
+        if (!lastDaytime || NyxWorld.isDaytime(this.world)) return false;
         return this.world.getCurrentMoonPhaseFactor() >= 1;
     }
 

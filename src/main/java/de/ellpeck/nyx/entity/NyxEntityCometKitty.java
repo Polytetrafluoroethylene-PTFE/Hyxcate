@@ -53,7 +53,7 @@ public class NyxEntityCometKitty extends EntityOcelot {
     public boolean canBreatheUnderwater() {
         return true;
     }
-    
+
     @Override
     public int getTalkInterval() {
         return super.getTalkInterval() * 2;

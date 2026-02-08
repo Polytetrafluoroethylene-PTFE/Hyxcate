@@ -1,6 +1,5 @@
 package de.ellpeck.nyx.entity;
 
-import de.ellpeck.nyx.init.NyxEntities;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;

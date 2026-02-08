@@ -1,9 +1,10 @@
 package de.ellpeck.nyx.init;
 
-import javax.annotation.Nonnull;
-
 import de.ellpeck.nyx.Nyx;
-import de.ellpeck.nyx.potion.*;
+import de.ellpeck.nyx.potion.NyxPotionCelestialErasure;
+import de.ellpeck.nyx.potion.NyxPotionDeepFreeze;
+import de.ellpeck.nyx.potion.NyxPotionInferno;
+import de.ellpeck.nyx.potion.NyxPotionParalysis;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionType;
@@ -12,6 +13,8 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
+
+import javax.annotation.Nonnull;
 
 @EventBusSubscriber(modid = Nyx.ID)
 public class NyxPotions {

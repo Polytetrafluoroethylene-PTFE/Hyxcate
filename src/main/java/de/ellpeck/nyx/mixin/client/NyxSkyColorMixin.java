@@ -20,7 +20,7 @@ public abstract class NyxSkyColorMixin {
 
     @Inject(method = "getSkyBlendColour", at = @At("HEAD"))
     private static void nyxSetSkyColor(World world, BlockPos center, CallbackInfoReturnable<Integer> cir) {
-        if (!NyxConfig.eventTint) return;
+        if (!NyxConfig.GENERAL.eventTint) return;
         NyxWorld nyxWorld = NyxWorld.get(world);
         if (nyxWorld == null || nyxWorld.currentSkyColor == 0) return;
         if (nyxWorld.currentLunarEvent != null)

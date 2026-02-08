@@ -19,7 +19,7 @@ public class NyxEnchantments {
 
     @SubscribeEvent
     public static void onEnchantmentRegistry(RegistryEvent.Register<Enchantment> event) {
-        if (NyxConfig.enchantments) {
+        if (NyxConfig.MASTER_SWITCHES.enchantmentsEnabled) {
             event.getRegistry().registerAll(
                     lunarEdge = new NyxEnchantmentLunarEdge(),
                     lunarShield = new NyxEnchantmentLunarShield(),

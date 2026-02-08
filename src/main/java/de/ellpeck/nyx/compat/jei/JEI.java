@@ -10,6 +10,10 @@ import net.minecraft.item.ItemStack;
 
 @JEIPlugin
 public class JEI implements IModPlugin {
+    private static void addJEIInfo(IModRegistry registry, ItemStack stack) {
+        registry.addIngredientInfo(stack, VanillaTypes.ITEM, stack.getTranslationKey() + ".jei_desc");
+    }
+
     @Override
     public void register(IModRegistry registry) {
         // JEI Info
@@ -23,9 +27,5 @@ public class JEI implements IModPlugin {
         addJEIInfo(registry, new ItemStack(NyxBlocks.kreknoriteRock));
         addJEIInfo(registry, new ItemStack(NyxItems.tektiteGemCluster));
         addJEIInfo(registry, new ItemStack(NyxBlocks.cyberCrystal));
-    }
-
-    private static void addJEIInfo(IModRegistry registry, ItemStack stack) {
-        registry.addIngredientInfo(stack, VanillaTypes.ITEM, stack.getTranslationKey() + ".jei_desc");
     }
 }

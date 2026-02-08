@@ -13,7 +13,7 @@ import net.minecraft.util.text.TextFormatting;
 
 public class NyxEventStarShower extends NyxLunarEvent {
 
-    private final ConfigImpl config = new ConfigImpl(() -> NyxConfig.starShowers);
+    private final ConfigImpl config = new ConfigImpl(NyxConfig.EVENTS_LUNAR.STAR_SHOWER.chance, NyxConfig.EVENTS_LUNAR.STAR_SHOWER.startNight, NyxConfig.EVENTS_LUNAR.STAR_SHOWER.gracePeriod, NyxConfig.EVENTS_LUNAR.STAR_SHOWER.nightInterval);
 
     public NyxEventStarShower(NyxWorld nyxWorld) {
         super("star_shower", nyxWorld);
@@ -21,8 +21,7 @@ public class NyxEventStarShower extends NyxLunarEvent {
 
     @Override
     public ITextComponent getStartMessage() {
-        return new TextComponentTranslation("info." + Nyx.ID + ".star_shower")
-                .setStyle(new Style().setColor(TextFormatting.GOLD).setItalic(true));
+        return new TextComponentTranslation("info." + Nyx.ID + ".star_shower").setStyle(new Style().setColor(TextFormatting.GOLD).setItalic(true));
     }
 
     @Override
@@ -32,8 +31,7 @@ public class NyxEventStarShower extends NyxLunarEvent {
 
     @Override
     public boolean shouldStart(boolean lastDaytime) {
-        if (!lastDaytime || NyxWorld.isDaytime(this.world))
-            return false;
+        if (!lastDaytime || NyxWorld.isDaytime(this.world)) return false;
         return this.config.canStart(true);
     }
 
@@ -46,7 +44,7 @@ public class NyxEventStarShower extends NyxLunarEvent {
     public int getSkyColor() {
         return 0xdec25f;
     }
-    
+
     @Override
     public String getMoonTexture() {
         return "starry_moon";

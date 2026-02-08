@@ -1,14 +1,11 @@
 package de.ellpeck.nyx.event.lunar;
 
 import de.ellpeck.nyx.capability.NyxWorld;
-import de.ellpeck.nyx.config.NyxConfig;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.INBTSerializable;
-
-import java.util.function.Supplier;
 
 public abstract class NyxLunarEvent implements INBTSerializable<NBTTagCompound> {
 
@@ -58,13 +55,20 @@ public abstract class NyxLunarEvent implements INBTSerializable<NBTTagCompound> 
 
     public class ConfigImpl implements INBTSerializable<NBTTagCompound> {
 
-        public final Supplier<NyxConfig.LunarEventConfig> config;
         public int daysSinceLast;
         public int startDays;
         public int graceDays;
 
-        public ConfigImpl(Supplier<NyxConfig.LunarEventConfig> config) {
-            this.config = config;
+        public double chance;
+        public int startNight;
+        public int gracePeriod;
+        public int nightInterval;
+
+        public ConfigImpl(double chance, int startNight, int gracePeriod, int nightInterval) {
+            this.chance = chance;
+            this.startNight = startNight;
+            this.gracePeriod = gracePeriod;
+            this.nightInterval = nightInterval;
         }
 
         public void update(boolean lastDaytime) {
@@ -75,22 +79,22 @@ public abstract class NyxLunarEvent implements INBTSerializable<NBTTagCompound> 
 
             if (!lastDaytime && NyxWorld.isDaytime(NyxLunarEvent.this.world)) {
                 this.daysSinceLast++;
-                if (this.startDays < this.config.get().startNight) this.startDays++;
-                if (this.graceDays < this.config.get().graceDays) this.graceDays++;
+                if (this.startDays < this.startNight) this.startDays++;
+                if (this.graceDays < this.gracePeriod) this.graceDays++;
             }
         }
 
         public boolean canStart(boolean useChance) {
             if (NyxLunarEvent.this.nyxWorld.forcedLunarEvent == NyxLunarEvent.this) return true;
-            if (this.startDays < this.config.get().startNight) return false;
-            if (this.graceDays < this.config.get().graceDays) return false;
-            if (this.config.get().nightInterval > 0) return this.daysSinceLast >= this.config.get().nightInterval;
+            if (this.startDays < this.startNight) return false;
+            if (this.graceDays < this.gracePeriod) return false;
+            if (this.nightInterval > 0) return this.daysSinceLast >= this.nightInterval;
             if (useChance) return NyxLunarEvent.this.world.rand.nextDouble() <= this.getChance();
             return true;
         }
 
         public double getChance() {
-            return this.config.get().chance;
+            return this.chance;
         }
 
         @Override

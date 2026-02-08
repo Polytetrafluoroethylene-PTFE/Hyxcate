@@ -1,5 +1,6 @@
 package de.ellpeck.nyx.block;
 
+import com.invadermonky.futurefireproof.api.IFireproofBlock;
 import de.ellpeck.nyx.capability.NyxWorld;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -16,8 +17,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 import java.util.function.Supplier;
-
-import com.invadermonky.futurefireproof.api.IFireproofBlock;
 
 // If Future Fireproof is installed, make it fireproof like Netherite!
 @Optional.Interface(modid = "futurefireproof", iface = "com.invadermonky.futurefireproof.api.IFireproofBlock", striprefs = true)

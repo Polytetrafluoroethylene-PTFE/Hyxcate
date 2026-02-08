@@ -9,6 +9,7 @@ import de.ellpeck.nyx.event.solar.NyxSolarEvent;
 import de.ellpeck.nyx.init.NyxRegistry;
 import de.ellpeck.nyx.network.NyxPacketHandler;
 import de.ellpeck.nyx.network.NyxPacketWorld;
+import de.ellpeck.nyx.util.NyxUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -85,9 +86,9 @@ public class NyxWorld implements ICapabilityProvider, INBTSerializable<NBTTagCom
     }
 
     public void update() {
-        updateMeteors();
-        updateLunarEvents();
-        updateSolarEvents();
+        if (NyxConfig.MASTER_SWITCHES.meteorsEnabled) updateMeteors();
+        if (NyxConfig.MASTER_SWITCHES.lunarEventsEnabled) updateLunarEvents();
+        if (NyxConfig.MASTER_SWITCHES.solarEventsEnabled) updateSolarEvents();
     }
 
     public void updateMeteors() {
@@ -100,11 +101,11 @@ public class NyxWorld implements ICapabilityProvider, INBTSerializable<NBTTagCom
 
             // calculate which chunks have players close to them for meteor spawning
             int interval = 100;
-            if (NyxConfig.meteors && this.world.getTotalWorldTime() % interval == 0) {
+            if (this.world.getTotalWorldTime() % interval == 0) {
                 Set<ChunkPos> remaining = new HashSet<>(this.playersPresentTicks.keySet());
                 for (EntityPlayer player : this.world.playerEntities) {
-                    for (int x = -NyxConfig.meteorDisallowRadius; x <= NyxConfig.meteorDisallowRadius; x++) {
-                        for (int z = -NyxConfig.meteorDisallowRadius; z <= NyxConfig.meteorDisallowRadius; z++) {
+                    for (int x = -NyxConfig.METEORS.disallowRadius; x <= NyxConfig.METEORS.disallowRadius; x++) {
+                        for (int z = -NyxConfig.METEORS.disallowRadius; z <= NyxConfig.METEORS.disallowRadius; z++) {
                             ChunkPos pos = new ChunkPos(MathHelper.floor(player.posX / 16) + x, MathHelper.floor(player.posZ / 16) + z);
                             MutableInt time = this.playersPresentTicks.computeIfAbsent(pos, p -> new MutableInt());
                             time.add(interval);
@@ -126,7 +127,7 @@ public class NyxWorld implements ICapabilityProvider, INBTSerializable<NBTTagCom
 
     public void updateLunarEvents() {
         String dimension = this.world.provider.getDimensionType().getName();
-        if (NyxConfig.allowedDimensions.contains(dimension)) {
+        if (NyxUtils.ALLOWED_DIMENSIONS_LUNAR.contains(dimension)) {
             moonPhase = this.world.getCurrentMoonPhaseFactor();
 
             for (NyxLunarEvent event : this.lunarEvents)
@@ -152,7 +153,7 @@ public class NyxWorld implements ICapabilityProvider, INBTSerializable<NBTTagCom
                         if (this.world.isRaining() || this.world.isThundering()) {
                             this.world.provider.resetRainAndThunder();
                         }
-                        if (NyxConfig.eventNotifications) {
+                        if (NyxConfig.GENERAL.eventNotifications) {
                             ITextComponent text = this.currentLunarEvent.getStartMessage();
                             for (EntityPlayer player : this.world.playerEntities) {
                                 player.sendMessage(text);
@@ -183,7 +184,7 @@ public class NyxWorld implements ICapabilityProvider, INBTSerializable<NBTTagCom
 
     public void updateSolarEvents() {
         String dimension = this.world.provider.getDimensionType().getName();
-        if (NyxConfig.allowedDimensionsSolar.contains(dimension)) {
+        if (NyxUtils.ALLOWED_DIMENSIONS_SOLAR.contains(dimension)) {
 
             for (NyxSolarEvent event : this.solarEvents)
                 event.update(this.wasNighttime);
@@ -208,7 +209,7 @@ public class NyxWorld implements ICapabilityProvider, INBTSerializable<NBTTagCom
                         if (this.world.isRaining() || this.world.isThundering()) {
                             this.world.provider.resetRainAndThunder();
                         }
-                        if (NyxConfig.eventNotifications) {
+                        if (NyxConfig.GENERAL.eventNotifications) {
                             ITextComponent text = this.currentSolarEvent.getStartMessage();
                             for (EntityPlayer player : this.world.playerEntities) {
                                 player.sendMessage(text);

@@ -43,10 +43,10 @@ public class NyxBlockMeteorRockHot extends NyxBlockMeteorRock {
 
         return this.droppedItem.get();
     }
-    
+
     @Override
     public void onEntityWalk(World world, BlockPos pos, Entity entity) {
-    	// Hot meteor rocks will always hurt you if you try walking on them
+        // Hot meteor rocks will always hurt you if you try walking on them
         if (!entity.isImmuneToFire() && entity instanceof EntityLivingBase && !EnchantmentHelper.hasFrostWalkerEnchantment((EntityLivingBase) entity))
             entity.attackEntityFrom(DamageSource.HOT_FLOOR, 1);
         super.onEntityWalk(world, pos, entity);

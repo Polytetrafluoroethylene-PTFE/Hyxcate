@@ -22,7 +22,7 @@ public class TraitStarShieldArmor extends AbstractArmorTrait {
     // TODO: Some additional starry particles would be nice
     @Override
     public float onDamaged(ItemStack armor, EntityPlayer player, DamageSource source, float damage, float newDamage, LivingDamageEvent event) {
-    	// 5% chance per piece
+        // 5% chance per piece
         if (NyxUtils.setChance(0.05F)) {
             // Completely cancel out the damage
             event.setCanceled(true);

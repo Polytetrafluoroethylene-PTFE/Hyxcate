@@ -20,10 +20,10 @@ public class NyxEnchantmentLunarEdge extends NyxEnchantment {
 
     @Override
     public float calcDamageByCreature(int level, EnumCreatureAttribute creatureType) {
-        float damagePerLevel = ((float) (NyxConfig.maxLevelLunarEdgeDamage - NyxConfig.minLevelLunarEdgeDamage)) / (getMaxLevel() - 1);
-        float addtlDamage = ((float) NyxConfig.minLevelLunarEdgeDamage) + (float) Math.max(0, level - 1) * damagePerLevel;
-        addtlDamage = (level == getMaxLevel()) ? ((float) NyxConfig.maxLevelLunarEdgeDamage) : addtlDamage; // To prevent floating-point damages when multiplying like 3.00001
-        return ((float) NyxConfig.baseLunarEdgeDamage) + NyxWorld.moonPhase * addtlDamage;
+        float damagePerLevel = ((float) (NyxConfig.GENERAL.lunarEdgeDamageMaxLevel - NyxConfig.GENERAL.lunarEdgeDamageMinLevel)) / (getMaxLevel() - 1);
+        float addtlDamage = ((float) NyxConfig.GENERAL.lunarEdgeDamageMinLevel) + (float) Math.max(0, level - 1) * damagePerLevel;
+        addtlDamage = (level == getMaxLevel()) ? ((float) NyxConfig.GENERAL.lunarEdgeDamageMaxLevel) : addtlDamage; // To prevent floating-point damages when multiplying like 3.00001
+        return ((float) NyxConfig.GENERAL.lunarEdgeDamageBase) + NyxWorld.moonPhase * addtlDamage;
     }
 
     @Override

@@ -15,7 +15,7 @@ public abstract class NyxCloudColorMixin {
 
     @Inject(method = "getCloudColorBody", at = @At("HEAD"), cancellable = true)
     private void nyxSetCloudColor(float partialTicks, CallbackInfoReturnable<Vec3d> cir) {
-        if (!NyxConfig.eventTint) return;
+        if (!NyxConfig.GENERAL.eventTint) return;
         NyxWorld nyxWorld = NyxWorld.get((World) (Object) this);
         if (nyxWorld == null || nyxWorld.currentSkyColor == 0) return;
         if (nyxWorld.currentSolarEvent != null)

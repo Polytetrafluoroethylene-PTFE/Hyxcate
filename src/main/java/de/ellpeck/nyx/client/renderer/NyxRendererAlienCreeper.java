@@ -2,9 +2,9 @@ package de.ellpeck.nyx.client.renderer;
 
 import de.ellpeck.nyx.Nyx;
 import de.ellpeck.nyx.client.model.NyxModelAlienCreeper;
-import de.ellpeck.nyx.entity.NyxEntityAlienCreeper;
 import de.ellpeck.nyx.client.model.layer.NyxLayerAlienCreeperCharge;
 import de.ellpeck.nyx.client.model.layer.NyxLayerAlienCreeperGlow;
+import de.ellpeck.nyx.entity.NyxEntityAlienCreeper;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;

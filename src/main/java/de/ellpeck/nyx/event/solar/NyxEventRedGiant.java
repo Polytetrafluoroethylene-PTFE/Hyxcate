@@ -12,7 +12,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 
 public class NyxEventRedGiant extends NyxSolarEvent {
-    private final ConfigImpl config = new ConfigImpl(() -> NyxConfig.redSun);
+    private final ConfigImpl config = new ConfigImpl(NyxConfig.EVENTS_SOLAR.RED_GIANT.chance, NyxConfig.EVENTS_SOLAR.RED_GIANT.startDay, NyxConfig.EVENTS_SOLAR.RED_GIANT.gracePeriod, NyxConfig.EVENTS_SOLAR.RED_GIANT.dayInterval);
 
     public NyxEventRedGiant(NyxWorld nyxWorld) {
         super("red_giant", nyxWorld);
@@ -20,8 +20,7 @@ public class NyxEventRedGiant extends NyxSolarEvent {
 
     @Override
     public ITextComponent getStartMessage() {
-        return new TextComponentTranslation("info." + Nyx.ID + ".red_giant")
-                .setStyle(new Style().setColor(TextFormatting.RED).setItalic(true));
+        return new TextComponentTranslation("info." + Nyx.ID + ".red_giant").setStyle(new Style().setColor(TextFormatting.RED).setItalic(true));
     }
 
     @Override
@@ -31,8 +30,7 @@ public class NyxEventRedGiant extends NyxSolarEvent {
 
     @Override
     public boolean shouldStart(boolean lastNighttime) {
-        if (!lastNighttime || NyxWorld.isNighttime(this.world))
-            return false;
+        if (!lastNighttime || NyxWorld.isNighttime(this.world)) return false;
         return this.config.canStart();
     }
 

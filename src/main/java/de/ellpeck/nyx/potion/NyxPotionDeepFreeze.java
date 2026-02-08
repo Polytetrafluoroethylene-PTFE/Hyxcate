@@ -15,23 +15,6 @@ public class NyxPotionDeepFreeze extends NyxPotion {
         super(name, isBadEffect, liquidColor);
     }
 
-    @Override
-    public void performEffect(EntityLivingBase entity, int amplifier) {
-        // EVERYBODY FREEZE!
-        entity.attackEntityFrom(NyxDamageSource.DEEP_FREEZE, 1.0F + (1.0F * amplifier)); // 1.0F = 1 half heart
-    }
-
-    @Override
-    public boolean isReady(int duration, int amplifier) {
-        int i = 40 >> amplifier;
-
-        if (i > 0) {
-            return duration % i == 0;
-        } else {
-            return true;
-        }
-    }
-
     // Slows down breaking blocks for players
     @SubscribeEvent
     public static void onBreakSpeedEvent(PlayerEvent.BreakSpeed event) {
@@ -49,6 +32,23 @@ public class NyxPotionDeepFreeze extends NyxPotion {
             } else {
                 event.getEntity().motionY *= 0.75D;
             }
+        }
+    }
+
+    @Override
+    public void performEffect(EntityLivingBase entity, int amplifier) {
+        // EVERYBODY FREEZE!
+        entity.attackEntityFrom(NyxDamageSource.DEEP_FREEZE, 1.0F + (1.0F * amplifier)); // 1.0F = 1 half heart
+    }
+
+    @Override
+    public boolean isReady(int duration, int amplifier) {
+        int i = 40 >> amplifier;
+
+        if (i > 0) {
+            return duration % i == 0;
+        } else {
+            return true;
         }
     }
 }
