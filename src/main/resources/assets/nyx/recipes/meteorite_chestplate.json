@@ -1,4 +1,10 @@
 {
+  "conditions": [
+    {
+      "type": "minecraft:item_exists",
+      "item": "nyx:meteorite_chestplate"
+    }
+  ],
   "type": "forge:ore_shaped",
   "pattern": [
     "X X",

@@ -1,4 +1,10 @@
 {
+  "conditions": [
+    {
+      "type": "minecraft:item_exists",
+      "item": "nyx:frezarite_boots"
+    }
+  ],
   "type": "forge:ore_shaped",
   "pattern": [
     "X X",

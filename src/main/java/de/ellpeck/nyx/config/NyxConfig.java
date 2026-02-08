@@ -49,13 +49,21 @@ public class NyxConfig {
         @Config.Comment("If enchantments should be enabled")
         public boolean enchantmentsEnabled = true;
 
-        @Config.Name("Weapons: Beam Swords")
+        @Config.Name("Equipment: Beam Swords")
         @Config.Comment("If beam swords should be enabled")
         public boolean beamSwordsEnabled = true;
 
-        @Config.Name("Weapons: Celestial Warhammer")
+        @Config.Name("Equipment: Celestial Warhammer")
         @Config.Comment("If the Celestial Warhammer should be enabled")
         public boolean celestialWarhammerEnabled = true;
+
+        @Config.Name("Equipment: Meteor Detector")
+        @Config.Comment("If the Meteor Detector should be enabled")
+        public boolean meteorDetectorEnabled = true;
+
+        @Config.Name("Equipment: Meteor Gear")
+        @Config.Comment("If all tools and armor made out of meteor materials (meteorite, frezarite, kreknorite, and tektite) should be enabled")
+        public boolean meteorGearEnabled = true;
     }
 
     public static class General {

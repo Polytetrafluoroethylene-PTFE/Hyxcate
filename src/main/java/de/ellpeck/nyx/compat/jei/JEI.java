@@ -1,5 +1,6 @@
 package de.ellpeck.nyx.compat.jei;
 
+import de.ellpeck.nyx.config.NyxConfig;
 import de.ellpeck.nyx.init.NyxBlocks;
 import de.ellpeck.nyx.init.NyxItems;
 import mezz.jei.api.IModPlugin;
@@ -18,9 +19,12 @@ public class JEI implements IModPlugin {
     public void register(IModRegistry registry) {
         // JEI Info
         addJEIInfo(registry, new ItemStack(NyxItems.fallenStar));
-        addJEIInfo(registry, new ItemStack(NyxItems.frezariteBoots));
 
         // JEI Info - Meteors
+        if (NyxConfig.MASTER_SWITCHES.meteorGearEnabled) {
+            addJEIInfo(registry, new ItemStack(NyxItems.frezariteBoots));
+        }
+
         addJEIInfo(registry, new ItemStack(NyxBlocks.meteoriteRockHot));
         addJEIInfo(registry, new ItemStack(NyxBlocks.meteoriteRock));
         addJEIInfo(registry, new ItemStack(NyxBlocks.frezariteRock));

@@ -1,4 +1,10 @@
 {
+  "conditions": [
+    {
+      "type": "minecraft:item_exists",
+      "item": "nyx:meteor_detector"
+    }
+  ],
   "type": "forge:ore_shaped",
   "pattern": [
     "STS",
