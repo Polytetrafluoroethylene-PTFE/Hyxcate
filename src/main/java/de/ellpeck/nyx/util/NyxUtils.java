@@ -129,8 +129,7 @@ public class NyxUtils {
     public static double getMeteorChance(World world, NyxWorld data) {
         DimensionType dim = world.provider.getDimensionType();
         if (dim == DimensionType.THE_END) return NyxConfig.METEORS.chanceEnd;
-
-        if (!NyxData.ALLOWED_DIMENSIONS_LUNAR.contains(dim.getName())) return 0;
+        if (!NyxData.ALLOWED_DIMENSIONS_LUNAR.contains(dim.getId())) return 0;
         boolean visitedGate = data.visitedDimensions.contains(NyxConfig.METEORS.gateDimension);
         if (!NyxWorld.isDaytime(world)) {
             if (data.currentLunarEvent instanceof NyxEventStarShower) {

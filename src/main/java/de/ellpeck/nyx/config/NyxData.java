@@ -9,8 +9,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class NyxData {
-    public static final List<String> ALLOWED_DIMENSIONS_LUNAR = new ArrayList<>();
-    public static final List<String> ALLOWED_DIMENSIONS_SOLAR = new ArrayList<>();
+    public static final List<Integer> ALLOWED_DIMENSIONS_LUNAR = new ArrayList<>();
+    public static final List<Integer> ALLOWED_DIMENSIONS_SOLAR = new ArrayList<>();
 
     public static final List<String> MOB_DUPLICATION_LIST = new ArrayList<>();
 

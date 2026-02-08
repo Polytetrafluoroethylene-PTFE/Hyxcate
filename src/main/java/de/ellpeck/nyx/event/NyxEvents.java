@@ -222,7 +222,7 @@ public final class NyxEvents {
 
         // Falling Stars
         if (!event.world.isRemote && NyxConfig.MASTER_SWITCHES.fallingStarEventsEnabled && !NyxWorld.isDaytime(event.world) && event.world.getTotalWorldTime() % 20 == 0) {
-            String dimension = event.world.provider.getDimensionType().getName();
+            int dimension = event.world.provider.getDimensionType().getId();
             if (NyxData.ALLOWED_DIMENSIONS_LUNAR.contains(dimension)) {
                 for (EntityPlayer player : event.world.playerEntities) {
                     if (event.world.rand.nextFloat() > (data.currentLunarEvent instanceof NyxEventStarShower ? NyxConfig.FALLING_STARS.chanceShower : NyxConfig.FALLING_STARS.chance))

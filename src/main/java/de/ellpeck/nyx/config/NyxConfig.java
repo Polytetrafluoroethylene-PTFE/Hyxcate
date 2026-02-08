@@ -117,11 +117,11 @@ public class NyxConfig {
 
         @Config.Name("Allowed Dimensions")
         @Config.Comment("Names of the dimensions that lunar events should occur in")
-        public String[] allowedDimensions = new String[]{"overworld"};
+        public Integer[] allowedDimensions = new Integer[]{0};
 
         @Config.Name("Mob Duplication List")
         @Config.Comment({"The registry names of entities that should not be spawned during the full and blood moons", "If isMobDuplicationWhitelist is true, this acts as a whitelist instead"})
-        public String[] mobDuplicationList = new String[0];
+        public String[] mobDuplicationList = new String[]{};
 
         @Config.Name("Is Mob Duplication Whitelist")
         @Config.Comment("If the mobDuplicationBlacklist should act as a whitelist instead")
@@ -253,7 +253,7 @@ public class NyxConfig {
 
         @Config.Name("Allowed Dimensions")
         @Config.Comment("Names of the dimensions that solar events should occur in")
-        public String[] allowedDimensions = new String[]{"overworld"};
+        public Integer[] allowedDimensions = new Integer[]{0};
 
         public static class GrimEclipse {
             @Config.Name("Chance")

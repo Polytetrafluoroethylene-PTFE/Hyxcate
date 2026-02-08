@@ -126,7 +126,7 @@ public class NyxWorld implements ICapabilityProvider, INBTSerializable<NBTTagCom
     }
 
     public void updateLunarEvents() {
-        String dimension = this.world.provider.getDimensionType().getName();
+        int dimension = this.world.provider.getDimensionType().getId();
         if (NyxData.ALLOWED_DIMENSIONS_LUNAR.contains(dimension)) {
             moonPhase = this.world.getCurrentMoonPhaseFactor();
 
@@ -183,7 +183,7 @@ public class NyxWorld implements ICapabilityProvider, INBTSerializable<NBTTagCom
     }
 
     public void updateSolarEvents() {
-        String dimension = this.world.provider.getDimensionType().getName();
+        int dimension = this.world.provider.getDimensionType().getId();
         if (NyxData.ALLOWED_DIMENSIONS_SOLAR.contains(dimension)) {
 
             for (NyxSolarEvent event : this.solarEvents)
