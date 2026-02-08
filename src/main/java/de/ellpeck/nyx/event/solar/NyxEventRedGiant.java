@@ -41,7 +41,7 @@ public class NyxEventRedGiant extends NyxSolarEvent {
 
     @Override
     public int getSkyColor() {
-        return 0x420d03;
+        return NyxConfig.EVENTS_SOLAR.RED_GIANT.skyColor;
     }
 
     @Override

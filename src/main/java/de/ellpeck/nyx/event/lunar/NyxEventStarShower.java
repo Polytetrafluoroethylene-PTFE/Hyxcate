@@ -42,7 +42,7 @@ public class NyxEventStarShower extends NyxLunarEvent {
 
     @Override
     public int getSkyColor() {
-        return 0xdec25f;
+        return NyxConfig.EVENTS_LUNAR.STAR_SHOWER.skyColor;
     }
 
     @Override

@@ -50,7 +50,7 @@ public class NyxEventBlueMoon extends NyxLunarEvent {
 
     @Override
     public int getSkyColor() {
-        return 0x3f3fc0;
+        return NyxConfig.EVENTS_LUNAR.BLUE_MOON.skyColor;
     }
 
     @Override

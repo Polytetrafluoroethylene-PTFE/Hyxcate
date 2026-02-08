@@ -41,7 +41,7 @@ public class NyxEventGrimEclipse extends NyxSolarEvent {
 
     @Override
     public int getSkyColor() {
-        return 0x131311;
+        return NyxConfig.EVENTS_SOLAR.GRIM_ECLIPSE.skyColor;
     }
 
     @Override

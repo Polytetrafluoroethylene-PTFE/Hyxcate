@@ -71,7 +71,7 @@ public class NyxEventBloodMoon extends NyxLunarEvent {
 
     @Override
     public int getSkyColor() {
-        return 0x420d03;
+        return NyxConfig.EVENTS_LUNAR.BLOOD_MOON.skyColor;
     }
 
     @Override

@@ -154,6 +154,10 @@ public class NyxConfig {
             @Config.Comment("If the blood moon should only occur on full moon nights")
             public boolean onFullMoon = true;
 
+            @Config.Name("Sky Color")
+            @Config.Comment("The hex code of the Blood Moon's sky color")
+            public int skyColor = 0x420d03;
+
             @Config.Name("Sleeping")
             @Config.Comment("If sleeping is allowed during a blood moon")
             public boolean sleeping = false;
@@ -209,6 +213,10 @@ public class NyxConfig {
             @Config.Name("On Full Moon")
             @Config.Comment("If the Blue Moon should only occur on full moon nights")
             public boolean onFullMoon = true;
+
+            @Config.Name("Sky Color")
+            @Config.Comment("The hex code of the Blue Moon's sky color")
+            public int skyColor = 0x3f3fc0;
 
             @Config.Name("Grow Amount")
             @Config.Comment("The amount of plants that should be grown per chunk during the Blue Moon")
@@ -287,6 +295,10 @@ public class NyxConfig {
             @Config.RangeInt(min = 0)
             public int gracePeriod = 15;
 
+            @Config.Name("Sky Color")
+            @Config.Comment("The hex code of the Star Shower's sky color")
+            public int skyColor = 0xdec25f;
+
             @Config.Name("Extra Spawns")
             @Config.Comment({"The registry names of entities that should spawn additionally alongside other entities during the event", "Syntax: originalEntity;extraEntity"})
             public String[] spawnsExtra = new String[]{};
@@ -336,6 +348,10 @@ public class NyxConfig {
             @Config.RangeInt(min = 0)
             public int gracePeriod = 8;
 
+            @Config.Name("Sky Color")
+            @Config.Comment("The hex code of the Grim Eclipse's sky color")
+            public int skyColor = 0x131311;
+
             @Config.Name("Extra Spawns")
             @Config.Comment({"The registry names of entities that should spawn additionally alongside other entities during the event", "Syntax: originalEntity;extraEntity"})
             public String[] spawnsExtra = new String[]{};
@@ -370,6 +386,10 @@ public class NyxConfig {
             @Config.Comment("The amount of days that should pass until the Red Giant happens again")
             @Config.RangeInt(min = 0)
             public int gracePeriod = 15;
+
+            @Config.Name("Sky Color")
+            @Config.Comment("The hex code of the Red Giant's sky color")
+            public int skyColor = 0x420d03;
 
             @Config.Name("Extra Spawns")
             @Config.Comment({"The registry names of entities that should spawn additionally alongside other entities during the event", "Syntax: originalEntity;extraEntity"})
