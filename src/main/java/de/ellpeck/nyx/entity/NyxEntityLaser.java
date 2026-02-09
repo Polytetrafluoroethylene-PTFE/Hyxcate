@@ -4,12 +4,19 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
+// TODO: Setup what effects the laser can do
 public class NyxEntityLaser extends EntityThrowable {
+    private static final DataParameter<Integer> COLOR = EntityDataManager.createKey(NyxEntityLaser.class, DataSerializers.VARINT);
+
     private float damage;
 
     public NyxEntityLaser(World world) {
@@ -23,15 +30,42 @@ public class NyxEntityLaser extends EntityThrowable {
         this.damage = damageAmount;
     }
 
-    public NyxEntityLaser(final World world, final double x, final double y, final double z) {
-        super(world, x, y, z);
-    }
-
-    public NyxEntityLaser(final World world, EntityPlayer player, float damageAmount) {
+    // Sets another color, otherwise default to red
+    public NyxEntityLaser(World world, EntityLivingBase player, float damageAmount, int color) {
         super(world, player);
         this.rotationPitch = -player.rotationPitch;
         this.rotationYaw = -player.rotationYaw;
         this.damage = damageAmount;
+        this.setLaserColor(color);
+    }
+
+    public NyxEntityLaser(final World world, final double x, final double y, final double z) {
+        super(world, x, y, z);
+    }
+
+    @Override
+    protected void entityInit() {
+        this.dataManager.register(COLOR, 0xFF0000);
+    }
+
+    public void setLaserColor(int color) {
+        this.dataManager.set(COLOR, color);
+    }
+
+    public int getLaserColor() {
+        return this.dataManager.get(COLOR);
+    }
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        if (compound.hasKey("LaserColor")) {
+            setLaserColor(compound.getInteger("LaserColor"));
+        }
+    }
+
+    @Override
+    public void writeEntityToNBT(NBTTagCompound compound) {
+        compound.setInteger("LaserColor", getLaserColor());
     }
 
     @Override
