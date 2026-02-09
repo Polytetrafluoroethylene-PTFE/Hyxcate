@@ -198,7 +198,9 @@ public class NyxConfig {
 
             @Config.Name("Replacement Spawns")
             @Config.Comment({"The registry names of entities that should replace other entities during the event", "Syntax: originalEntity;replacementEntity"})
-            public String[] spawnsReplacement = new String[]{};
+            public String[] spawnsReplacement = new String[]{
+                    "minecraft:zombie;nyx:eyezor"
+            };
         }
 
         public static class BlueMoon {
@@ -352,7 +354,9 @@ public class NyxConfig {
 
             @Config.Name("Replacement Spawns")
             @Config.Comment({"The registry names of entities that should replace other entities during the event", "Syntax: originalEntity;replacementEntity"})
-            public String[] spawnsReplacement = new String[]{};
+            public String[] spawnsReplacement = new String[]{
+                    "minecraft:zombie;nyx:eyezor"
+            };
         }
     }
 
@@ -417,7 +421,9 @@ public class NyxConfig {
 
             @Config.Name("Replacement Spawns")
             @Config.Comment({"The registry names of entities that should replace other entities during the event", "Syntax: originalEntity;replacementEntity"})
-            public String[] spawnsReplacement = new String[]{};
+            public String[] spawnsReplacement = new String[]{
+                    "minecraft:zombie;nyx:eyezor"
+            };
         }
 
         public static class RedGiant {
