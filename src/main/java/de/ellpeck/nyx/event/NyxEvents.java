@@ -27,15 +27,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
@@ -329,13 +325,36 @@ public final class NyxEvents {
     @SubscribeEvent
     public static void onCheckSpawn(LivingSpawnEvent.CheckSpawn event) {
         EntityLivingBase entity = event.getEntityLiving();
-        if (!(entity instanceof IMob || entity instanceof EntityMob) || entity instanceof EntitySlime) return;
+        NyxWorld nyx = NyxWorld.get(entity.world);
+        if (nyx == null || !(entity instanceof IMob || entity instanceof EntityMob)) return;
 
-        // Don't spawn mobs during blue moon
-        if (event.getSpawner() == null) {
-            NyxWorld nyx = NyxWorld.get(entity.world);
-            if (nyx != null && nyx.currentLunarEvent instanceof NyxEventBlueMoon && NyxConfig.EVENTS_LUNAR.BLUE_MOON.peacefulNight) {
-                event.setResult(Event.Result.DENY);
+        if (event.getSpawner() == null && entity.world.canSeeSky(entity.getPosition())) {
+            ResourceLocation name = EntityList.getKey(entity);
+            if (nyx.currentLunarEvent instanceof NyxEventBloodMoon) {
+                if (!NyxData.EXCLUSIVE_SPAWNS_BLOOD_MOON.isEmpty() && !NyxData.EXCLUSIVE_SPAWNS_BLOOD_MOON.contains(name)) {
+                    event.setResult(Event.Result.DENY);
+                }
+            } else if (nyx.currentLunarEvent instanceof NyxEventBlueMoon) {
+                if (!NyxData.EXCLUSIVE_SPAWNS_BLUE_MOON.isEmpty() && !NyxData.EXCLUSIVE_SPAWNS_BLUE_MOON.contains(name)) {
+                    event.setResult(Event.Result.DENY);
+                }
+            } else if (nyx.currentLunarEvent instanceof NyxEventFullMoon) {
+                if (!NyxData.EXCLUSIVE_SPAWNS_FULL_MOON.isEmpty() && !NyxData.EXCLUSIVE_SPAWNS_FULL_MOON.contains(name)) {
+                    event.setResult(Event.Result.DENY);
+                }
+            } else if (nyx.currentLunarEvent instanceof NyxEventStarShower) {
+                if (!NyxData.EXCLUSIVE_SPAWNS_STAR_SHOWER.isEmpty() && !NyxData.EXCLUSIVE_SPAWNS_STAR_SHOWER.contains(name)) {
+                    event.setResult(Event.Result.DENY);
+                }
+            }
+            if (nyx.currentSolarEvent instanceof NyxEventGrimEclipse) {
+                if (!NyxData.EXCLUSIVE_SPAWNS_GRIM_ECLIPSE.isEmpty() && !NyxData.EXCLUSIVE_SPAWNS_GRIM_ECLIPSE.contains(name)) {
+                    event.setResult(Event.Result.DENY);
+                }
+            } else if (nyx.currentSolarEvent instanceof NyxEventRedGiant) {
+                if (!NyxData.EXCLUSIVE_SPAWNS_RED_GIANT.isEmpty() && !NyxData.EXCLUSIVE_SPAWNS_RED_GIANT.contains(name)) {
+                    event.setResult(Event.Result.DENY);
+                }
             }
         }
     }

@@ -183,6 +183,10 @@ public class NyxConfig {
             @Config.Comment("If mobs spawned by the Blood Moon should die at sunrise")
             public boolean mobsVanish = true;
 
+            @Config.Name("Exclusive Spawns")
+            @Config.Comment("The registry names of entities that should spawn exclusively on the surface during the event")
+            public String[] spawnsExclusive = new String[]{};
+
             @Config.Name("Extra Spawns")
             @Config.Comment({"The registry names of entities that should spawn additionally alongside other entities during the event", "Syntax: originalEntity;extraEntity"})
             public String[] spawnsExtra = new String[]{};
@@ -244,9 +248,11 @@ public class NyxConfig {
             @Config.RangeInt(min = 1, max = 100)
             public int growInterval = 10;
 
-            @Config.Name("Peaceful Night")
-            @Config.Comment("If the Blue Moon should prevent all hostile mob spawns except slimes")
-            public boolean peacefulNight = true;
+            @Config.Name("Exclusive Spawns")
+            @Config.Comment("The registry names of entities that should spawn exclusively on the surface during the event")
+            public String[] spawnsExclusive = new String[]{
+                    "minecraft:slime"
+            };
 
             @Config.Name("Extra Spawns")
             @Config.Comment({"The registry names of entities that should spawn additionally alongside other entities during the event", "Syntax: originalEntity;extraEntity"})
@@ -270,6 +276,10 @@ public class NyxConfig {
             @Config.Name("Add Potion Effects")
             @Config.Comment("If mobs spawned during a full moon should have random potion effects applied to them (similarly to spiders in the base game)")
             public boolean addPotionEffects = true;
+
+            @Config.Name("Exclusive Spawns")
+            @Config.Comment("The registry names of entities that should spawn exclusively on the surface during the event")
+            public String[] spawnsExclusive = new String[]{};
 
             @Config.Name("Extra Spawns")
             @Config.Comment({"The registry names of entities that should spawn additionally alongside other entities during the event", "Syntax: originalEntity;extraEntity"})
@@ -327,6 +337,10 @@ public class NyxConfig {
             @Config.Comment("If the Star Shower should only occur on full moon nights")
             public boolean onFullMoon = false;
 
+            @Config.Name("Exclusive Spawns")
+            @Config.Comment("The registry names of entities that should spawn exclusively on the surface during the event")
+            public String[] spawnsExclusive = new String[]{};
+
             @Config.Name("Extra Spawns")
             @Config.Comment({"The registry names of entities that should spawn additionally alongside other entities during the event", "Syntax: originalEntity;extraEntity"})
             public String[] spawnsExtra = new String[]{};
@@ -376,6 +390,10 @@ public class NyxConfig {
             @Config.RangeInt(min = 0)
             public int gracePeriod = 8;
 
+            @Config.Name("Exclusive Spawns")
+            @Config.Comment("The registry names of entities that should spawn exclusively on the surface during the event")
+            public String[] spawnsExclusive = new String[]{};
+
             @Config.Name("Extra Spawns")
             @Config.Comment({"The registry names of entities that should spawn additionally alongside other entities during the event", "Syntax: originalEntity;extraEntity"})
             public String[] spawnsExtra = new String[]{};
@@ -422,6 +440,10 @@ public class NyxConfig {
             @Config.Comment("The amount of days that should pass until the Red Giant happens again")
             @Config.RangeInt(min = 0)
             public int gracePeriod = 15;
+
+            @Config.Name("Exclusive Spawns")
+            @Config.Comment("The registry names of entities that should spawn exclusively on the surface during the event")
+            public String[] spawnsExclusive = new String[]{};
 
             @Config.Name("Extra Spawns")
             @Config.Comment({"The registry names of entities that should spawn additionally alongside other entities during the event", "Syntax: originalEntity;extraEntity"})
