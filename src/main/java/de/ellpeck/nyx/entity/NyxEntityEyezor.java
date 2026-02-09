@@ -12,11 +12,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class NyxEntityEyezor extends EntityZombie implements IRangedAttackMob {
     public static final DataParameter<Integer> TYPE = EntityDataManager.createKey(NyxEntityEyezor.class, DataSerializers.VARINT);
@@ -89,6 +92,23 @@ public class NyxEntityEyezor extends EntityZombie implements IRangedAttackMob {
 
     @Override
     public void setSwingingArms(boolean swingingArms) {
+    }
 
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return null;
+    }
+
+    @Nonnull
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
+        return NyxSoundEvents.ENTITY_EYEZOR_HURT.getSoundEvent();
+    }
+
+    @Nonnull
+    @Override
+    protected SoundEvent getDeathSound() {
+        return NyxSoundEvents.ENTITY_EYEZOR_DEATH.getSoundEvent();
     }
 }

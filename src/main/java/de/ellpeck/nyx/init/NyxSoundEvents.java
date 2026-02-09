@@ -26,6 +26,8 @@ public enum NyxSoundEvents {
     ENTITY_ALIEN_CREEPER_IDLE("entity.alien_creeper.idle"),
     ENTITY_ALIEN_KITTY_IDLE("entity.alien_kitty.idle"),
     ENTITY_COMET_KITTY_IDLE("entity.comet_kitty.idle"),
+    ENTITY_EYEZOR_DEATH("entity.eyezor.death"),
+    ENTITY_EYEZOR_HURT("entity.eyezor.hurt"),
     ENTITY_METEOR_FALLING("entity.meteor.falling"),
     ENTITY_METEOR_IMPACT_FAR("entity.meteor.impact.far"),
     ENTITY_METEOR_IMPACT("entity.meteor.impact"),

@@ -134,6 +134,19 @@
       "nyx:entity/comet_kitty/idle5"
     ]
   },
+  "entity.eyezor.death": {
+    "sounds": [
+      "nyx:entity/eyezor/death"
+    ]
+  },
+  "entity.eyezor.hurt": {
+    "sounds": [
+      "nyx:entity/eyezor/hurt1",
+      "nyx:entity/eyezor/hurt2",
+      "nyx:entity/eyezor/hurt3",
+      "nyx:entity/eyezor/hurt4"
+    ]
+  },
   "entity.meteor.falling": {
     "sounds": [
       "nyx:entity/meteor/falling_loop"
