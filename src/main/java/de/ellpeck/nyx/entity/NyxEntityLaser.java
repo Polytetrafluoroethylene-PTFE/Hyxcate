@@ -10,8 +10,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
+// TODO: Rendering
 public class NyxEntityLaser extends EntityThrowable {
     private float damage;
+
+    public NyxEntityLaser(World world) {
+        super(world);
+    }
 
     public NyxEntityLaser(World world, EntityLivingBase entity, float damageAmount) {
         super(world, entity);
@@ -31,6 +36,7 @@ public class NyxEntityLaser extends EntityThrowable {
         this.damage = damageAmount;
     }
 
+    @Override
     protected void onImpact(RayTraceResult result) {
         Entity shooter = this.thrower;
         Entity target = result.entityHit;
@@ -58,6 +64,7 @@ public class NyxEntityLaser extends EntityThrowable {
         }
     }
 
+    @Override
     public void onUpdate() {
         super.onUpdate();
 
@@ -66,17 +73,13 @@ public class NyxEntityLaser extends EntityThrowable {
         }
     }
 
+    @Override
     protected float getGravityVelocity() {
         return 0.0F;
     }
 
+    @Override
     public boolean canBeCollidedWith() {
         return false;
     }
-
-    public boolean attackEntityFrom(DamageSource source, int amount) {
-        return false;
-    }
 }
-
-
