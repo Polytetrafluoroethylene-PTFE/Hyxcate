@@ -6,11 +6,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-// TODO: Rendering
 public class NyxEntityLaser extends EntityThrowable {
     private float damage;
 
@@ -38,28 +36,19 @@ public class NyxEntityLaser extends EntityThrowable {
 
     @Override
     protected void onImpact(RayTraceResult result) {
-        Entity shooter = this.thrower;
+        EntityLivingBase shooter = this.thrower;
         Entity target = result.entityHit;
 
-        if (!this.world.isRemote && result != null) {
+        if (!this.world.isRemote) {
             if (result.typeOfHit == RayTraceResult.Type.ENTITY) {
-                if (target != null && shooter != null && target instanceof EntityLivingBase && target != shooter && !target.isOnSameTeam(shooter)) {
+                if (shooter != null && target instanceof EntityLivingBase && target != shooter && !target.isOnSameTeam(shooter)) {
                     if (target.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this, shooter).setProjectile(), this.damage)) {
-                        float local_difficulty = this.world.getDifficultyForLocation(new BlockPos(this)).getAdditionalDifficulty();
-                        // 5 seconds * regional difficulty
-                        int difficulty_calculation = (int) (100 * local_difficulty);
-
-                        target.setFire(10 + difficulty_calculation);
-
-                        if (shooter instanceof EntityLivingBase) {
-                            this.applyEnchantments((EntityLivingBase) shooter, target);
-                        }
+                        target.setFire(1);
+                        this.applyEnchantments(shooter, target);
                     }
                 }
             } else if (result.typeOfHit == RayTraceResult.Type.BLOCK) {
-                if (!world.isRemote) {
-                    world.spawnParticle(EnumParticleTypes.REDSTONE, this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
-                }
+                this.world.spawnParticle(EnumParticleTypes.REDSTONE, this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
             }
         }
     }
@@ -76,10 +65,5 @@ public class NyxEntityLaser extends EntityThrowable {
     @Override
     protected float getGravityVelocity() {
         return 0.0F;
-    }
-
-    @Override
-    public boolean canBeCollidedWith() {
-        return false;
     }
 }

@@ -108,6 +108,7 @@ public final class NyxClientEvents {
         RenderingRegistry.registerEntityRenderingHandler(NyxEntityCometKitty.class, NyxRendererCometKitty::new);
         RenderingRegistry.registerEntityRenderingHandler(NyxEntityAlienKitty.class, NyxRendererAlienKitty::new);
         RenderingRegistry.registerEntityRenderingHandler(NyxEntityEyezor.class, NyxRendererEyezor::new);
+        RenderingRegistry.registerEntityRenderingHandler(NyxEntityLaser.class, NyxRendererLaser::new);
         //RenderingRegistry.registerEntityRenderingHandler(NyxEntityStellarProtector.class, NyxRendererStellarProtector::new);
 
         for (Item item : NyxItems.MOD_ITEMS)
