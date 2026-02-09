@@ -17,6 +17,10 @@ public class NyxConfig {
     @Config.Comment("Settings for general mechanics")
     public static final General GENERAL = new General();
 
+    @Config.LangKey("config.nyx.general")
+    @Config.Comment("Settings for entities")
+    public static final Entities ENTITIES = new Entities();
+
     @Config.LangKey("config.nyx.events_lunar")
     @Config.Comment("Settings for lunar events")
     public static final EventsLunar EVENTS_LUNAR = new EventsLunar();
@@ -106,6 +110,18 @@ public class NyxConfig {
                 "The multiplier scales up to the max according to the level and moon phase",
                 "Example: If the config option is set to 2.5, a full moon with max lunar edge level would give 3.5x XP and a new moon would give 1x XP"})
         public double lunarEdgeMaxXPMultiplier = 1.0;
+    }
+
+    public static class Entities {
+        @Config.LangKey("config.nyx.eyezor")
+        @Config.Comment("Eyezor settings")
+        public final Eyezor EYEZOR = new Eyezor();
+
+        public static class Eyezor {
+            @Config.Name("Laser Color")
+            @Config.Comment("The hex code of the Eyezor's laser color")
+            public int laserColor = 0x6231FD;
+        }
     }
 
     public static class EventsLunar {
