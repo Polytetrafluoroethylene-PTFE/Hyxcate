@@ -55,6 +55,7 @@ entity.nyx.comet_kitty.name=Comet Kitty
 entity.nyx.eyezor.name=Eyezor
 entity.nyx.falling_meteor.name=Falling Meteor
 entity.nyx.falling_star.name=Falling Star
+entity.nyx.laser.name=Laser Beam
 entity.nyx.stellar_protector.name=Stellar Protector
 
 # Fluids
