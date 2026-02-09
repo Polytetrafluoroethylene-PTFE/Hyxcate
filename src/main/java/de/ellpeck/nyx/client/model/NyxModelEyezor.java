@@ -7,7 +7,6 @@ import net.minecraft.client.model.ModelZombie;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 
-// TODO: Fix animations
 public class NyxModelEyezor extends ModelZombie {
     private final ModelRenderer arms;
     private final ModelRenderer base;
@@ -25,8 +24,6 @@ public class NyxModelEyezor extends ModelZombie {
 
         base = new ModelRenderer(this);
         base.setRotationPoint(0.0F, 24.0F, 0.0F);
-        base.cubeList.add(new ModelBox(base, 0, 16, -4.0F, -12.0F, -2.0F, 4, 12, 4, 0.0F, true));
-        base.cubeList.add(new ModelBox(base, 0, 0, 0.0F, -12.0F, -2.0F, 4, 12, 4, 0.0F, false));
         base.cubeList.add(new ModelBox(base, 16, 0, -4.0F, -24.0F, -2.0F, 8, 12, 4, 0.0F, false));
         base.cubeList.add(new ModelBox(base, 40, 17, -4.0F, -24.0F, -2.0F, 8, 12, 4, 0.55F, false));
         base.cubeList.add(new ModelBox(base, 58, -3, 0.0F, -24.0F, 2.0F, 0, 9, 3, 0.0F, false));
@@ -39,6 +36,8 @@ public class NyxModelEyezor extends ModelZombie {
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         arms.render(f5);
         base.render(f5);
+        bipedLeftLeg.render(f5);
+        bipedRightLeg.render(f5);
     }
 
     @Override
