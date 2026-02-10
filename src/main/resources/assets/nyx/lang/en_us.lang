@@ -224,6 +224,7 @@ modifier.nyx.supercharge_armor.desc=§oSupercharge me!§r\nGetting hurt has a ch
 # Config Categories
 config.nyx.master_switches=Master Switches
 config.nyx.general=General
+config.nyx.entities=Entities
 config.nyx.events_lunar=Events: Lunar
 config.nyx.events_solar=Events: Solar
 config.nyx.meteors=Meteors
@@ -234,3 +235,4 @@ config.nyx.full_moon=Full Moon
 config.nyx.star_shower=Star Shower
 config.nyx.grim_eclipse=Grim Eclipse
 config.nyx.red_giant=Red Giant
+config.nyx.eyezor=Eyezor

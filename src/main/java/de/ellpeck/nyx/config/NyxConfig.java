@@ -17,7 +17,7 @@ public class NyxConfig {
     @Config.Comment("Settings for general mechanics")
     public static final General GENERAL = new General();
 
-    @Config.LangKey("config.nyx.general")
+    @Config.LangKey("config.nyx.entities")
     @Config.Comment("Settings for entities")
     public static final Entities ENTITIES = new Entities();
 
