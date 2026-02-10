@@ -553,6 +553,11 @@ public class NyxConfig {
         @Config.RangeDouble(min = 0.0)
         public double chanceEnd = 0.0015;
 
+        @Config.Name("Grace Period")
+        @Config.Comment("The amount of days that should pass after world creation until meteors can fall")
+        @Config.RangeInt(min = 0)
+        public int gracePeriod = 0;
+
         @Config.Name("Spawn Radius")
         @Config.Comment("The amount of blocks a meteor can spawn away from the nearest player")
         public int spawnRadius = 1000;

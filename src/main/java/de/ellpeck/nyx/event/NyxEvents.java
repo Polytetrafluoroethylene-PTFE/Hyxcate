@@ -240,7 +240,7 @@ public final class NyxEvents {
 
         // Meteors
         meteors:
-        if (!event.world.isRemote && NyxConfig.MASTER_SWITCHES.meteorEventsEnabled && event.world.getTotalWorldTime() % 20 == 0) {
+        if (!event.world.isRemote && NyxConfig.MASTER_SWITCHES.meteorEventsEnabled && event.world.getTotalWorldTime() >= NyxConfig.METEORS.gracePeriod * 24000L && event.world.getTotalWorldTime() % 20 == 0) {
             if (event.world.playerEntities.isEmpty()) break meteors;
             EntityPlayer selectedPlayer = event.world.playerEntities.get(event.world.rand.nextInt(event.world.playerEntities.size()));
             if (selectedPlayer == null) break meteors;
