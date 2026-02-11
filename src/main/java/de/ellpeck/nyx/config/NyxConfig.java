@@ -668,21 +668,41 @@ public class NyxConfig {
     }
 
     public static class ModIntegration {
+        @Config.LangKey("config.nyx.simple_difficulty")
+        @Config.Comment("SimpleDifficulty settings")
+        public final ModIntegration.SimpleDifficulty SIMPLE_DIFFICULTY = new ModIntegration.SimpleDifficulty();
+
+        @Config.LangKey("config.nyx.tan")
+        @Config.Comment("Tough As Nails settings")
+        public final ModIntegration.TAN TAN = new ModIntegration.TAN();
+
         @Config.Name("Construct's Armory Integration")
         @Config.Comment("Enables Construct's Armory integration (requires Tinkers' Construct integration to be enabled!)")
         public boolean constructsArmoryIntegration = true;
-
-        @Config.Name("SimpleDifficulty Integration")
-        @Config.Comment("Enables SimpleDifficulty integration")
-        public boolean simpleDifficultyIntegration = true;
 
         @Config.Name("Tinkers' Construct Integration")
         @Config.Comment("Enables Tinkers' Construct integration")
         public boolean tinkersConstructIntegration = true;
 
-        @Config.Name("Tough As Nails Integration")
-        @Config.Comment("Enables Tough As Nails integration")
-        public boolean toughAsNailsIntegration = true;
+        public static class SimpleDifficulty {
+            @Config.Name("Enable SimpleDifficulty Integration")
+            @Config.Comment("Enables SimpleDifficulty integration")
+            public boolean enableSimpleDifficulty = true;
+
+            @Config.Name("Red Giant Temperature")
+            @Config.Comment("The temperature level during an active Red Giant event")
+            public int redGiantTemperature = 10;
+        }
+
+        public static class TAN {
+            @Config.Name("Enable Tough As Nails Integration")
+            @Config.Comment("Enables Tough As Nails integration")
+            public boolean enableTAN = true;
+
+            @Config.Name("Red Giant Temperature")
+            @Config.Comment("The temperature level during an active Red Giant event")
+            public int redGiantTemperature = 22;
+        }
     }
 
     @Mod.EventBusSubscriber(modid = Nyx.ID)

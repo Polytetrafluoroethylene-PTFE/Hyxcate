@@ -29,14 +29,14 @@ public class NyxCompatHandler {
     }
 
     public static void init() {
-        if (Loader.isModLoaded("simpledifficulty") && NyxConfig.MOD_INTEGRATION.simpleDifficultyIntegration) {
+        if (Loader.isModLoaded("simpledifficulty") && NyxConfig.MOD_INTEGRATION.SIMPLE_DIFFICULTY.enableSimpleDifficulty) {
             SimpleDifficulty.registerTemperatureModifiers();
         }
 
         if (Loader.isModLoaded("tconstruct") && NyxConfig.MOD_INTEGRATION.tinkersConstructIntegration) {
             TinkersConstruct.registerToolRecipes();
         }
-        if (Loader.isModLoaded("toughasnails") && NyxConfig.MOD_INTEGRATION.toughAsNailsIntegration) {
+        if (Loader.isModLoaded("toughasnails") && NyxConfig.MOD_INTEGRATION.TAN.enableTAN) {
             ToughAsNails.registerTemperatureModifiers();
         }
     }
