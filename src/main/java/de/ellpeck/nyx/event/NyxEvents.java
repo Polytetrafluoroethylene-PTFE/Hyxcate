@@ -32,6 +32,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityWolf;
@@ -71,6 +72,7 @@ import org.apache.commons.lang3.mutable.MutableInt;
 
 import javax.vecmath.Vector3d;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @EventBusSubscriber(modid = Nyx.ID)
@@ -146,7 +148,7 @@ public final class NyxEvents {
             }
         }
 
-        if (NyxWorld.get(player.world).currentLunarEvent instanceof NyxEventBlueMoon) {
+        if (Objects.requireNonNull(NyxWorld.get(player.world)).currentLunarEvent instanceof NyxEventBlueMoon) {
             player.addPotionEffect(new PotionEffect(MobEffects.LUCK, 2, 1, false, false));
         }
     }
@@ -397,7 +399,8 @@ public final class NyxEvents {
                     effect = MobEffects.INVISIBILITY;
                 }
 
-                if (effect != null) entity.addPotionEffect(new PotionEffect(effect, Integer.MAX_VALUE));
+                // TODO: Add a configure list of mobs that can and cannot get effects. Maybe we could do this for all events as well
+                if (effect != null && !(entity instanceof EntityCreeper)) entity.addPotionEffect(new PotionEffect(effect, Integer.MAX_VALUE));
             }
         } else if (nyx.currentLunarEvent instanceof NyxEventStarShower) {
             if (NyxConfig.EVENTS_LUNAR.STAR_SHOWER.spawnsExtraChance > 0 && entity.world.rand.nextInt(NyxConfig.EVENTS_LUNAR.STAR_SHOWER.spawnsExtraChance) == 0) {
