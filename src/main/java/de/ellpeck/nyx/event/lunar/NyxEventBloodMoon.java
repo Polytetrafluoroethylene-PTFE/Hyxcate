@@ -24,6 +24,8 @@ import net.minecraft.world.WorldEntitySpawner;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraftforge.event.ForgeEventFactory;
+import net.minecraftforge.fml.common.eventhandler.Event;
 
 import java.util.Set;
 
@@ -219,9 +221,9 @@ public class NyxEventBloodMoon extends NyxLunarEvent {
 
                                                 entityliving.setLocationAndAngles(f, i3, f1, worldServerIn.rand.nextFloat() * 360.0F, 0.0F);
 
-                                                net.minecraftforge.fml.common.eventhandler.Event.Result canSpawn = net.minecraftforge.event.ForgeEventFactory.canEntitySpawn(entityliving, worldServerIn, f, i3, f1, false);
-                                                if (canSpawn == net.minecraftforge.fml.common.eventhandler.Event.Result.ALLOW || (canSpawn == net.minecraftforge.fml.common.eventhandler.Event.Result.DEFAULT && (entityliving.getCanSpawnHere() && entityliving.isNotColliding()))) {
-                                                    if (!net.minecraftforge.event.ForgeEventFactory.doSpecialSpawn(entityliving, worldServerIn, f, i3, f1))
+                                                Event.Result canSpawn = ForgeEventFactory.canEntitySpawn(entityliving, worldServerIn, f, i3, f1, false);
+                                                if (canSpawn == Event.Result.ALLOW || (canSpawn == Event.Result.DEFAULT && (entityliving.getCanSpawnHere() && entityliving.isNotColliding()))) {
+                                                    if (!ForgeEventFactory.doSpecialSpawn(entityliving, worldServerIn, f, i3, f1, null))
                                                         ientitylivingdata = entityliving.onInitialSpawn(worldServerIn.getDifficultyForLocation(new BlockPos(entityliving)), ientitylivingdata);
 
                                                     if (entityliving.isNotColliding()) {
@@ -231,7 +233,7 @@ public class NyxEventBloodMoon extends NyxLunarEvent {
                                                         entityliving.setDead();
                                                     }
 
-                                                    if (j2 >= net.minecraftforge.event.ForgeEventFactory.getMaxSpawnPackSize(entityliving)) {
+                                                    if (j2 >= ForgeEventFactory.getMaxSpawnPackSize(entityliving)) {
                                                         continue label134;
                                                     }
                                                 }
