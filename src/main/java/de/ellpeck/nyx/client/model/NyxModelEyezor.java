@@ -4,7 +4,9 @@ import de.ellpeck.nyx.entity.NyxEntityEyezor;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.model.ModelZombie;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
 
 public class NyxModelEyezor extends ModelZombie {
@@ -59,5 +61,16 @@ public class NyxModelEyezor extends ModelZombie {
         bipedHead.render(f5);
         bipedLeftLeg.render(f5);
         bipedRightLeg.render(f5);
+    }
+
+    @Override
+    public void postRenderArm(float scale, EnumHandSide side) {
+        // This is why the arm parts should be consistent with ModelBiped...
+        this.bipedBody.postRender(scale);
+        this.getArmForSide(side).postRender(scale);
+
+        // Sync the tool position on both arms
+        float xOffset = (side == EnumHandSide.RIGHT) ? 0.0325F : -0.0325F;
+        GlStateManager.translate(xOffset, 0.15F, 0.0F);
     }
 }
