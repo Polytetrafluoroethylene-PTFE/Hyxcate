@@ -24,10 +24,10 @@ import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEntitySpawner;
 import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -75,10 +75,11 @@ public class NyxUtils {
         return stack;
     }
 
-    public static boolean handleExtraSpawn(Entity entity, String key, Map<ResourceLocation, ResourceLocation> map) {
+    public static boolean handleExtraSpawn(Entity entity, String key, Map<ResourceLocation, List<ResourceLocation>> map) {
         ResourceLocation name = EntityList.getKey(entity);
         if (map.containsKey(name)) {
-            Entity extra = EntityList.createEntityByIDFromName(map.get(name), entity.world);
+            List<ResourceLocation> extras = map.get(name);
+            Entity extra = EntityList.createEntityByIDFromName(extras.get(RANDOM.nextInt(extras.size())), entity.world);
             doExtraSpawn(entity, key, extra);
             return true;
         }
@@ -115,10 +116,11 @@ public class NyxUtils {
         }
     }
 
-    public static boolean handleReplacementSpawn(Entity entity, String key, Map<ResourceLocation, ResourceLocation> map) {
+    public static boolean handleReplacementSpawn(Entity entity, String key, Map<ResourceLocation, List<ResourceLocation>> map) {
         ResourceLocation name = EntityList.getKey(entity);
         if (map.containsKey(name)) {
-            Entity replacement = EntityList.createEntityByIDFromName(map.get(name), entity.world);
+            List<ResourceLocation> replacements = map.get(name);
+            Entity replacement = EntityList.createEntityByIDFromName(replacements.get(RANDOM.nextInt(replacements.size())), entity.world);
             if (replacement instanceof EntityLiving) {
                 doReplacementSpawn(entity, key, (EntityLiving) replacement);
                 return true;
