@@ -96,6 +96,10 @@ public class NyxConfig {
         @Config.Comment("If celestial events should be announced in chat when they start")
         public boolean eventNotifications = true;
 
+        @Config.Name("Event Intro Sounds")
+        @Config.Comment("If celestial events should play a unique sound when they start")
+        public boolean eventIntroSounds = true;
+
         @Config.Name("Lunar Edge Damage: Base")
         @Config.Comment("The amount of additional damage that will always be applied regardless of moon phase")
         public int lunarEdgeDamageBase = 0;

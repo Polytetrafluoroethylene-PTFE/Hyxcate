@@ -150,15 +150,21 @@ public class NyxWorld implements ICapabilityProvider, INBTSerializable<NBTTagCom
                     }
                     if (this.currentLunarEvent != null) {
                         isDirty = true;
+
                         if (this.world.isRaining() || this.world.isThundering()) {
                             this.world.provider.resetRainAndThunder();
                         }
-                        if (NyxConfig.GENERAL.eventNotifications) {
-                            ITextComponent text = this.currentLunarEvent.getStartMessage();
-                            for (EntityPlayer player : this.world.playerEntities) {
+
+                        ITextComponent text = this.currentLunarEvent.getStartMessage();
+                        for (EntityPlayer player : this.world.playerEntities) {
+
+                            if (NyxConfig.GENERAL.eventNotifications) {
                                 player.sendMessage(text);
-                                if (this.currentLunarEvent.getStartSound() != null)
-                                    this.world.playSound(null, player.posX, player.posY, player.posZ, this.currentLunarEvent.getStartSound(), SoundCategory.AMBIENT, 10.0F, 1.0F);
+                            }
+
+                            if (this.currentLunarEvent.getStartSound() != null && NyxConfig.GENERAL.eventIntroSounds) {
+                                this.world.playSound(null, player.posX, player.posY, player.posZ, this.currentLunarEvent.getStartSound(), SoundCategory.AMBIENT, 10.0F, 1.0F);
+
                             }
                         }
                     }
@@ -204,17 +210,22 @@ public class NyxWorld implements ICapabilityProvider, INBTSerializable<NBTTagCom
                             }
                         }
                     }
+
                     if (this.currentSolarEvent != null) {
                         isDirty = true;
+
                         if (this.world.isRaining() || this.world.isThundering()) {
                             this.world.provider.resetRainAndThunder();
                         }
-                        if (NyxConfig.GENERAL.eventNotifications) {
-                            ITextComponent text = this.currentSolarEvent.getStartMessage();
-                            for (EntityPlayer player : this.world.playerEntities) {
+
+                        ITextComponent text = this.currentSolarEvent.getStartMessage();
+                        for (EntityPlayer player : this.world.playerEntities) {
+                            if (NyxConfig.GENERAL.eventNotifications) {
                                 player.sendMessage(text);
-                                if (this.currentSolarEvent.getStartSound() != null)
-                                    this.world.playSound(null, player.posX, player.posY, player.posZ, this.currentSolarEvent.getStartSound(), SoundCategory.AMBIENT, 10.0F, 1.0F);
+                            }
+
+                            if (this.currentSolarEvent.getStartSound() != null && NyxConfig.GENERAL.eventIntroSounds) {
+                                this.world.playSound(null, player.posX, player.posY, player.posZ, this.currentSolarEvent.getStartSound(), SoundCategory.AMBIENT, 10.0F, 1.0F);
                             }
                         }
                     }
