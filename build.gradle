@@ -141,6 +141,9 @@ dependencies {
     // Urkaz Moon Tools
     implementation rfg.deobf('curse.maven:urkaz-moon-tools-362825:3283366')
 
+    // Вращение Земли Майнкрафтская (Accurate day/night-cycles Mod)
+    implementation rfg.deobf('curse.maven:time-speed-mod-221053:5376135')
+
     if (project.use_mixins.toBoolean()) {
         // Change your mixin refmap name here:
         String mixin = modUtils.enableMixins('zone.rong:mixinbooter:10.7', "mixins.${project.mod_id}.refmap.json")
