@@ -1,6 +1,5 @@
 package de.ellpeck.nyx.item;
 
-import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.invadermonky.futurefireproof.api.IFireproofItem;
 import de.ellpeck.nyx.init.NyxAttributes;
@@ -27,6 +26,7 @@ import net.minecraftforge.common.IRarity;
 import net.minecraftforge.fml.common.Optional;
 
 import javax.annotation.Nullable;
+import java.util.Collection;
 import java.util.List;
 
 // If Future Fireproof is installed, make it fireproof like Netherite!
@@ -106,11 +106,12 @@ public class NyxItemSpade extends ItemSpade implements INyxTool, IFireproofItem 
 
     @Override
     public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot) {
-        Multimap<String, AttributeModifier> multimap = HashMultimap.create();
+        Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
 
         if (equipmentSlot == EntityEquipmentSlot.MAINHAND) {
-            multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, NyxAttributes.ATTACK_DAMAGE_ID.toString(), this.attackDamage, 0));
-            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, NyxAttributes.ATTACK_SPEED_ID.toString(), this.attackSpeed - 4.0D, 0));
+            Collection<AttributeModifier> attackSpeedMod = multimap.get(SharedMonsterAttributes.ATTACK_SPEED.getName());
+            attackSpeedMod.clear();
+            attackSpeedMod.add(new AttributeModifier(ATTACK_SPEED_MODIFIER, NyxAttributes.ATTACK_SPEED_ID.toString(), this.attackSpeed - 4.0D, 0));
             multimap.put(NyxAttributes.MAGNETIZATION.getName(), magnetizationAmount);
             multimap.put(NyxAttributes.PARALYSIS.getName(), paralysisChance);
         }
