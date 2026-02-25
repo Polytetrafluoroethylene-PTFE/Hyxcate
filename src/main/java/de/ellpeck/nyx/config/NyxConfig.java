@@ -681,12 +681,20 @@ public class NyxConfig {
         public final ModIntegration.TAN TAN = new ModIntegration.TAN();
 
         @Config.Name("Construct's Armory Integration")
-        @Config.Comment("Enables Construct's Armory integration (requires Tinkers' Construct integration to be enabled!)")
+        @Config.Comment({"Enables Construct's Armory integration", "Requires Tinkers' Construct integration to be enabled"})
         public boolean constructsArmoryIntegration = true;
 
         @Config.Name("Tinkers' Construct Integration")
         @Config.Comment("Enables Tinkers' Construct integration")
         public boolean tinkersConstructIntegration = true;
+
+        @Config.Name("Peaceful Surface Integration")
+        @Config.Comment({"Enables Peaceful Surface integration", "Mobs will spawn on the surface during events when enabled"})
+        public boolean peacefulSurfaceIntegration = true;
+
+        @Config.Name("Game Stages Integration")
+        @Config.Comment({"Enables Game Stages integration", "See wiki for details: https://github.com/Elite-Modding-Team/Hyxcate/wiki/Game-Stages"})
+        public boolean gameStagesIntegration = false;
 
         public static class SimpleDifficulty {
             @Config.Name("Enable SimpleDifficulty Integration")

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class NyxData {
     public static final List<Integer> ALLOWED_DIMENSIONS_LUNAR = new ArrayList<>();
@@ -29,19 +30,19 @@ public class NyxData {
     public static final List<Block> LIQUID_BLOCKS_KREKNORITE = new ArrayList<>();
     public static final List<Block> LIQUID_BLOCKS_UNKNOWN = new ArrayList<>();
 
-    public static final Map<ResourceLocation, ResourceLocation> EXTRA_SPAWNS_BLOOD_MOON = new Object2ObjectOpenHashMap<>();
-    public static final Map<ResourceLocation, ResourceLocation> EXTRA_SPAWNS_BLUE_MOON = new Object2ObjectOpenHashMap<>();
-    public static final Map<ResourceLocation, ResourceLocation> EXTRA_SPAWNS_FULL_MOON = new Object2ObjectOpenHashMap<>();
-    public static final Map<ResourceLocation, ResourceLocation> EXTRA_SPAWNS_STAR_SHOWER = new Object2ObjectOpenHashMap<>();
-    public static final Map<ResourceLocation, ResourceLocation> EXTRA_SPAWNS_GRIM_ECLIPSE = new Object2ObjectOpenHashMap<>();
-    public static final Map<ResourceLocation, ResourceLocation> EXTRA_SPAWNS_RED_GIANT = new Object2ObjectOpenHashMap<>();
+    public static final Map<ResourceLocation, List<ResourceLocation>> EXTRA_SPAWNS_BLOOD_MOON = new Object2ObjectOpenHashMap<>();
+    public static final Map<ResourceLocation, List<ResourceLocation>> EXTRA_SPAWNS_BLUE_MOON = new Object2ObjectOpenHashMap<>();
+    public static final Map<ResourceLocation, List<ResourceLocation>> EXTRA_SPAWNS_FULL_MOON = new Object2ObjectOpenHashMap<>();
+    public static final Map<ResourceLocation, List<ResourceLocation>> EXTRA_SPAWNS_STAR_SHOWER = new Object2ObjectOpenHashMap<>();
+    public static final Map<ResourceLocation, List<ResourceLocation>> EXTRA_SPAWNS_GRIM_ECLIPSE = new Object2ObjectOpenHashMap<>();
+    public static final Map<ResourceLocation, List<ResourceLocation>> EXTRA_SPAWNS_RED_GIANT = new Object2ObjectOpenHashMap<>();
 
-    public static final Map<ResourceLocation, ResourceLocation> REPLACEMENT_SPAWNS_BLOOD_MOON = new Object2ObjectOpenHashMap<>();
-    public static final Map<ResourceLocation, ResourceLocation> REPLACEMENT_SPAWNS_BLUE_MOON = new Object2ObjectOpenHashMap<>();
-    public static final Map<ResourceLocation, ResourceLocation> REPLACEMENT_SPAWNS_FULL_MOON = new Object2ObjectOpenHashMap<>();
-    public static final Map<ResourceLocation, ResourceLocation> REPLACEMENT_SPAWNS_STAR_SHOWER = new Object2ObjectOpenHashMap<>();
-    public static final Map<ResourceLocation, ResourceLocation> REPLACEMENT_SPAWNS_GRIM_ECLIPSE = new Object2ObjectOpenHashMap<>();
-    public static final Map<ResourceLocation, ResourceLocation> REPLACEMENT_SPAWNS_RED_GIANT = new Object2ObjectOpenHashMap<>();
+    public static final Map<ResourceLocation, List<ResourceLocation>> REPLACEMENT_SPAWNS_BLOOD_MOON = new Object2ObjectOpenHashMap<>();
+    public static final Map<ResourceLocation, List<ResourceLocation>> REPLACEMENT_SPAWNS_BLUE_MOON = new Object2ObjectOpenHashMap<>();
+    public static final Map<ResourceLocation, List<ResourceLocation>> REPLACEMENT_SPAWNS_FULL_MOON = new Object2ObjectOpenHashMap<>();
+    public static final Map<ResourceLocation, List<ResourceLocation>> REPLACEMENT_SPAWNS_STAR_SHOWER = new Object2ObjectOpenHashMap<>();
+    public static final Map<ResourceLocation, List<ResourceLocation>> REPLACEMENT_SPAWNS_GRIM_ECLIPSE = new Object2ObjectOpenHashMap<>();
+    public static final Map<ResourceLocation, List<ResourceLocation>> REPLACEMENT_SPAWNS_RED_GIANT = new Object2ObjectOpenHashMap<>();
 
     public static final List<ResourceLocation> EXCLUSIVE_SPAWNS_BLOOD_MOON = new ArrayList<>();
     public static final List<ResourceLocation> EXCLUSIVE_SPAWNS_BLUE_MOON = new ArrayList<>();
@@ -107,12 +108,13 @@ public class NyxData {
         }
     }
 
-    private static void readEntitiesFromConfigAsMap(String[] array, Map<ResourceLocation, ResourceLocation> map) {
+    private static void readEntitiesFromConfigAsMap(String[] array, Map<ResourceLocation, List<ResourceLocation>> map) {
         map.clear();
-        for (String string : array) {
-            String[] subStrings = string.split(";");
-            if (subStrings.length != 2) continue;
-            map.put(new ResourceLocation(subStrings[0]), new ResourceLocation(subStrings[1]));
-        }
+        map.putAll(Arrays.stream(array)
+                .map(string -> string.split(";"))
+                .filter(subStrings -> subStrings.length == 2)
+                .collect(Collectors.groupingBy(
+                        subStrings -> new ResourceLocation(subStrings[0]),
+                        Collectors.mapping(subStrings -> new ResourceLocation(subStrings[1]), Collectors.toList()))));
     }
 }

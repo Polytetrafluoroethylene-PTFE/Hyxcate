@@ -97,13 +97,14 @@
 
 ### 🔁 **Mod Integration**
 
-- With [**Astral Sorcery**](https://www.curseforge.com/minecraft/mc-mods/astral-sorcery) installed, Hyxcate events will never trigger on the same day the Horologium constellation (Solar Eclipse) happens.
 - With [**CraftTweaker**](https://www.curseforge.com/minecraft/mc-mods/crafttweaker) installed, current lunar and solar events can be detected. See [this explanation page](https://github.com/Elite-Modding-Team/Hyxcate/wiki/CraftTweaker).
 - With [**Demagnetize**](https://www.curseforge.com/minecraft/mc-mods/demagnetize) installed, Hyxcate magnetization effects will not pull items around activated Demagnetizers.
 - With [**Future Fireproof**](https://www.curseforge.com/minecraft/mc-mods/future-fireproof) installed, many items and blocks added by Hyxcate will become immune to being destroyed by fire or lava, similar to Netherite from modern versions of Minecraft.
 - With [**Tinkers' Antique (Tinkers' Construct)**](https://www.curseforge.com/minecraft/mc-mods/tinkers-antique) installed, there are new tool materials to tinker with. You can find more information on our [documentation here](https://github.com/Elite-Modding-Team/Hyxcate/wiki/Tinkers'-Construct)!
 - With [**Antique Armory (Construct's Armory)**](https://www.curseforge.com/minecraft/mc-mods/antique-armory) installed, there are new armor materials to tinker with. You can find more information on our [documentation here](https://github.com/Elite-Modding-Team/Hyxcate/wiki/Tinkers'-Construct-(Construct's-Armory))!
-- With [**Tough As Nails**](https://www.curseforge.com/minecraft/mc-mods/tough-as-nails) or [**SimpleDifficulty**](https://www.curseforge.com/minecraft/mc-mods/simpledifficulty-for-underdog) installed, the environment temperature is the same as the Nether on active Red Giant events.
+- With [**Tough As Nails**](https://www.curseforge.com/minecraft/mc-mods/tough-as-nails) or [**SimpleDifficulty**](https://www.curseforge.com/minecraft/mc-mods/simpledifficulty-for-underdog) installed, the environment temperature is the same as the Nether (configurable) on active Red Giant events.
+- With [**Game Stages**](https://www.curseforge.com/minecraft/mc-mods/game-stages) installed, celestial/meteor/falling star events can be controlled. See [this explanation page](https://github.com/Elite-Modding-Team/Hyxcate/wiki/Game-Stages).
+- For mod compatibility in general, please check **Mod Compatibility** on the wiki regarding known conflicts.
 - More to come!
 
 ### 👨‍💻 Main Developers, Collaborators, and Friends
@@ -111,8 +112,8 @@
 - Lead Developer/Owner ~ IcarussOne
 - Lead Developer ~ ACGaming
 - Sound Artist ~ PessiMysterio
-- Eyezor and a lot of other mob models ~ NicholasW
 - Texture Artist ~ Ichipie1125
+- Effect icons, Eyezor and a lot of other amazing mob models ~ NicholasW
 - Beam Sword textures, Alien Kitty textures, earlier weapon textures, and the space cat doodle on the bottom of this readme ~ Kimiko0402
 - Extensive feedback on earlier versions of the mod ~ xJon
 
